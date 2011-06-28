@@ -6,11 +6,11 @@ using Nancy;
 
 namespace LetMeRate.Web
 {
-    public class MainModule : NancyModule
+    public class AccountModule : NancyModule
     {
-        public MainModule()
+        public AccountModule()
         {
-           
+          
             Get["/"] = x =>
             {
                 return "Test Route";

@@ -5,6 +5,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LetMeRate.Web", "LetMeRate.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LetMeRate.Web.Specs", "LetMeRate.Web.Specs\LetMeRate.Web.Specs.csproj", "{0341E79D-157F-4737-BB1E-72FE0094B7F7}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testing", "Testing", "{8C7CB858-8E46-4B32-ADDB-5A68C020AB62}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LetMeRate.Application", "LetMeRate.Application\LetMeRate.Application.csproj", "{43AEA94D-7007-473A-A113-7A7FE702E25B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,8 +23,15 @@ Global
 		{0341E79D-157F-4737-BB1E-72FE0094B7F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0341E79D-157F-4737-BB1E-72FE0094B7F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0341E79D-157F-4737-BB1E-72FE0094B7F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43AEA94D-7007-473A-A113-7A7FE702E25B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43AEA94D-7007-473A-A113-7A7FE702E25B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43AEA94D-7007-473A-A113-7A7FE702E25B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43AEA94D-7007-473A-A113-7A7FE702E25B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0341E79D-157F-4737-BB1E-72FE0094B7F7} = {8C7CB858-8E46-4B32-ADDB-5A68C020AB62}
 	EndGlobalSection
 EndGlobal
