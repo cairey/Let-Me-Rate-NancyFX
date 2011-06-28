@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using LetMeRate.Application;
+using LetMeRate.Application.Security;
+using LetMeRate.Application.Services;
 using Nancy;
 using TinyIoC;
 
@@ -13,6 +15,8 @@ namespace LetMeRate.Web
         protected override void ConfigureApplicationContainer(TinyIoCContainer container)
         {
             container.Register<IAccountService, AccountService>().AsSingleton();
+            container.Register<IAccountKeyGenerator, KeyGenerator>().AsSingleton();
+            container.Register<ISecurityDigest, SecurityDigest>().AsSingleton();
         }
     }
 }
