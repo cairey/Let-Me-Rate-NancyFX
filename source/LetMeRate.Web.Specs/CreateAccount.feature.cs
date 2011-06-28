@@ -64,11 +64,9 @@ this.ScenarioSetup(scenarioInfo);
 #line 8
 testRunner.Given("I am creating an account");
 #line 9
-testRunner.When("adding details");
+testRunner.When("creating an account with my email and password");
 #line 10
-testRunner.Then("I should be able to add my email address");
-#line 11
-testRunner.Then("I should be able to add my password");
+testRunner.Then("I should be able to see my created account");
 #line hidden
             testRunner.CollectScenarioErrors();
         }

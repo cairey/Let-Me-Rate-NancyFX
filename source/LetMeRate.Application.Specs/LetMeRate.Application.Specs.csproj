@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{0341E79D-157F-4737-BB1E-72FE0094B7F7}</ProjectGuid>
+    <ProjectGuid>{A3722DD3-74B5-43E5-A7BF-CE17656996CE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LetMeRate.Web.Specs</RootNamespace>
-    <AssemblyName>LetMeRate.Web.Specs</AssemblyName>
+    <RootNamespace>LetMeRate.Application.Specs</RootNamespace>
+    <AssemblyName>LetMeRate.Application.Specs</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,18 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Nancy, Version=0.6.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\dependencies\Nancy.dll</HintPath>
-    </Reference>
-    <Reference Include="Nancy.Hosting.Aspnet, Version=0.6.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\dependencies\Nancy.Hosting.Aspnet.dll</HintPath>
-    </Reference>
-    <Reference Include="Nancy.Testing, Version=0.6.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\dependencies\Nancy.Testing.dll</HintPath>
-    </Reference>
     <Reference Include="NSubstitute">
       <HintPath>..\..\dependencies\NSubstitute.dll</HintPath>
     </Reference>
@@ -62,25 +50,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="TestWebBootstrapper.cs" />
-    <Compile Include="CreateAccount.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CreateAccount.feature</DependentUpon>
-    </Compile>
-    <Compile Include="CreateAccountSteps.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="CreateAccount.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CreateAccount.feature.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\LetMeRate.Web\LetMeRate.Web.csproj">
-      <Project>{9775047C-ECF9-40F6-98A6-D71FC6DF293F}</Project>
-      <Name>LetMeRate.Web</Name>
+    <ProjectReference Include="..\LetMeRate.Application\LetMeRate.Application.csproj">
+      <Project>{43AEA94D-7007-473A-A113-7A7FE702E25B}</Project>
+      <Name>LetMeRate.Application</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
