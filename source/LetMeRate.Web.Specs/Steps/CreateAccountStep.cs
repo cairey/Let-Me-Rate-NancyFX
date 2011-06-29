@@ -1,5 +1,8 @@
-﻿using NUnit.Framework;
+﻿using System.Collections.Generic;
+using LetMeRate.Web.Acceptance.Specs.Setup;
+using NUnit.Framework;
 using Nancy;
+using Nancy.Json;
 using Nancy.Testing;
 using TechTalk.SpecFlow;
 
@@ -32,6 +35,11 @@ namespace LetMeRate.Web.Acceptance.Specs.Steps
         [Then(@"I should be able to see my created account")]
         public void ThenIShouldBeAbleToSeeMyCreatedAccount()
         {
+            var responseString = _response.GetBodyAsString();
+            JavaScriptSerializer s = new JavaScriptSerializer();
+            var res = s.Deserialize<Dictionary<string, object>>(responseString);
+
+            Assert.IsNotNull(res["AccountKey"]);
             Assert.AreEqual(HttpStatusCode.OK, _response.StatusCode);
         }
     }
