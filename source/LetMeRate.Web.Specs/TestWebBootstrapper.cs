@@ -1,10 +1,9 @@
 ﻿using System;
 using System.IO;
-using Nancy;
 using Nancy.Testing;
 using Nancy.Testing.Fakes;
 
-namespace LetMeRate.Web.Specs
+namespace LetMeRate.Web.Acceptance.Specs
 {
     public class TestWebBootstrapper : WebBootstrapper
     {

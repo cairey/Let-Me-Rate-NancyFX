@@ -4,6 +4,7 @@ namespace LetMeRate.Application.Services
 {
     public interface IAccountService
     {
-        void CreateAccount(AddAccountCommand addAccountCommand);
+        dynamic CreateAccount(AddUserAccountCommand addUserAccountCommand);
+        dynamic GetUserAccountByKey(string accountKey);
     }
 }

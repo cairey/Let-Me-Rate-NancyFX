@@ -10,7 +10,7 @@
 //  </auto-generated>
 // ------------------------------------------------------------------------------
 #region Designer generated code
-namespace LetMeRate.Web.Specs.Features
+namespace LetMeRate.Web.Acceptance.Specs.Features
 {
     using TechTalk.SpecFlow;
     
@@ -55,18 +55,20 @@ namespace LetMeRate.Web.Specs.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("adding a rating")]
+        [NUnit.Framework.CategoryAttribute("CreateUserAccount")]
+        [NUnit.Framework.CategoryAttribute("Clear")]
         public virtual void AddingARating()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("adding a rating", ((string[])(null)));
-#line 6
-this.ScenarioSetup(scenarioInfo);
-#line 7
-testRunner.Given("I am using Ratings");
-#line 8
-testRunner.When("adding a rating for my account");
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("adding a rating", new string[] {
+                        "CreateUserAccount",
+                        "Clear"});
 #line 9
-testRunner.Then("I should be able to add my rating based on the score system for my account");
+this.ScenarioSetup(scenarioInfo);
 #line 10
+testRunner.Given("I am using Ratings");
+#line 11
+testRunner.When("adding a rating for my account");
+#line 12
 testRunner.Then("I should be able to see the rating i added");
 #line hidden
             testRunner.CollectScenarioErrors();

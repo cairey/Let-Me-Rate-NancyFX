@@ -10,7 +10,7 @@
 //  </auto-generated>
 // ------------------------------------------------------------------------------
 #region Designer generated code
-namespace LetMeRate.Web.Specs.Features
+namespace LetMeRate.Web.Acceptance.Specs.Features
 {
     using TechTalk.SpecFlow;
     

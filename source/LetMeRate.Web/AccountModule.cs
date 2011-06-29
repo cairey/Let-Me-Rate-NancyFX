@@ -24,12 +24,11 @@ namespace LetMeRate.Web
 
             Post["/Account/Create"] = x =>
                                           {
-                                              var command = new AddAccountCommand(Request.Form.EmailAddress,
+                                              var command = new AddUserAccountCommand(Request.Form.EmailAddress,
                                                                                   Request.Form.Password,
                                                                                   uint.Parse(Request.Form.RateOutOf));
-                                              _accountService.CreateAccount(command);
-
-                return "Test";
+                                              var account = _accountService.CreateAccount(command);
+                                              return Response.AsJson(new { AccountKey = account.Key });
             };
         }
     }

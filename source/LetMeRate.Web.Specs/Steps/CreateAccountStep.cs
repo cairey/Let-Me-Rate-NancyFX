@@ -3,7 +3,7 @@ using Nancy;
 using Nancy.Testing;
 using TechTalk.SpecFlow;
 
-namespace LetMeRate.Web.Specs.Steps
+namespace LetMeRate.Web.Acceptance.Specs.Steps
 {
     [Binding]
     public class CreateAccountStep

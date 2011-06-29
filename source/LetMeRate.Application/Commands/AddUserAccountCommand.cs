@@ -3,13 +3,13 @@ using System.Text.RegularExpressions;
 
 namespace LetMeRate.Application.Commands
 {
-    public class AddAccountCommand
+    public class AddUserAccountCommand
     {
         private readonly string _email;
         private readonly string _password;
         private readonly uint _rateOutOf;
 
-        public AddAccountCommand(string email, string password, uint rateOutOf)
+        public AddUserAccountCommand(string email, string password, uint rateOutOf)
         {
             if(string.IsNullOrWhiteSpace(email)) throw new ArgumentException("Email Address not supplied.", "email");
             
