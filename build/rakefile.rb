@@ -14,7 +14,7 @@ Albacore.configure do |config|
 end
 
 desc "Compiles solution and runs unit tests"
-task :default => [:clean, :version, :compile]
+task :default => [:clean, :version, :compile, :nunit]
 
 desc "Executes all MSpec and Xunit tests"
 task :test => [:mspec, :xunit]
@@ -41,6 +41,15 @@ msbuild :compile => [:version] do |msb|
 	msb.solution = SOLUTION_FILE
 end
 
+desc "NUnit Test Runner"
+nunit do |nunit|
+
+	tests = FileList["../source/**/#{CONFIGURATION}/*.Specs.dll"].exclude(/obj\//)
+	nunit.command = "tools/nunit/net-2.0/nunit-console.exe"
+	nunit.assemblies = tests
+end
+
+
 desc "Gathers output files and copies them to the output folder"
 task :publish => [:compile] do
 	Dir.mkdir(OUTPUT)
@@ -50,21 +59,7 @@ task :publish => [:compile] do
 	FileUtils.cp_r FileList["../source/**/#{CONFIGURATION}/*.dll"].exclude(/obj\//).exclude(/.Tests/), "#{OUTPUT}/binaries"
 end
 
-desc "Executes MSpec tests"
-mspec :mspec => [:compile] do |mspec|
-	#This is a bit fragile but this is the only mspec assembly at present. 
-	#Fails if passed a FileList of all tests. Need to investigate.
-	mspec.command = "tools/mspec/mspec.exe"
-	mspec.assemblies "src/Nancy.Tests/bin/Release/Nancy.Tests.dll"
-end
 
-desc "Executes xUnit tests"
-xunit :xunit => [:compile] do |xunit|
-	tests = FileList["src/**/#{CONFIGURATION}/*.Tests.dll"].exclude(/obj\//)
-
-	xunit.command = "tools/xunit/xunit.console.clr4.x86.exe"
-	xunit.assemblies = tests
-end	
 
 desc "Zips up the built binaries for easy distribution"
 zip :package => [:publish] do |zip|
