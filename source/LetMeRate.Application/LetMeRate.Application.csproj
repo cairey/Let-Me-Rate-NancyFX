@@ -49,6 +49,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\AddAccountCommand.cs" />
+    <Compile Include="Commands\AddRatingParameters.cs" />
     <Compile Include="Services\AccountService.cs" />
     <Compile Include="Security\IAccountKeyGenerator.cs" />
     <Compile Include="Services\IAccountService.cs" />
@@ -56,6 +58,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\ISecurityDigest.cs" />
     <Compile Include="Security\SecurityDigest.cs" />
+    <Compile Include="Services\IRatingService.cs" />
+    <Compile Include="Services\RatingService.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

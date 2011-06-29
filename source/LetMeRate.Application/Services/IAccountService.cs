@@ -1,7 +1,9 @@
-﻿namespace LetMeRate.Application.Services
+﻿using LetMeRate.Application.Commands;
+
+namespace LetMeRate.Application.Services
 {
     public interface IAccountService
     {
-        void CreateAccount(string email, string password);
+        void CreateAccount(AddAccountCommand addAccountCommand);
     }
 }

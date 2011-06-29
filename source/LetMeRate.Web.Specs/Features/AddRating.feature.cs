@@ -10,7 +10,7 @@
 //  </auto-generated>
 // ------------------------------------------------------------------------------
 #region Designer generated code
-namespace LetMeRate.Web.Specs
+namespace LetMeRate.Web.Specs.Features
 {
     using TechTalk.SpecFlow;
     
@@ -18,21 +18,20 @@ namespace LetMeRate.Web.Specs
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.6.1.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("Create Account")]
-    public partial class CreateAccountFeature
+    [NUnit.Framework.DescriptionAttribute("Add Rating")]
+    public partial class AddRatingFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "CreateAccount.feature"
+#line 1 "AddRating.feature"
 #line hidden
         
         [NUnit.Framework.TestFixtureSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Create Account", "In order to manage my account\r\nAs a user of ratings\r\nI want to be able to create " +
-                    "an account", GenerationTargetLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Add Rating", "In order to see Ratings\r\nAs a user of Ratings\r\nI want to be able to see ratings", GenerationTargetLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -55,18 +54,20 @@ namespace LetMeRate.Web.Specs
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Create Account")]
-        public virtual void CreateAccount()
+        [NUnit.Framework.DescriptionAttribute("adding a rating")]
+        public virtual void AddingARating()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create Account", ((string[])(null)));
-#line 7
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("adding a rating", ((string[])(null)));
+#line 6
 this.ScenarioSetup(scenarioInfo);
+#line 7
+testRunner.Given("I am using Ratings");
 #line 8
-testRunner.Given("I am creating an account");
+testRunner.When("adding a rating for my account");
 #line 9
-testRunner.When("creating an account with my email and password");
+testRunner.Then("I should be able to add my rating based on the score system for my account");
 #line 10
-testRunner.Then("I should be able to see my created account");
+testRunner.Then("I should be able to see the rating i added");
 #line hidden
             testRunner.CollectScenarioErrors();
         }

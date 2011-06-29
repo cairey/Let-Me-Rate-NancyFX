@@ -1,4 +1,5 @@
-﻿using LetMeRate.Application.Security;
+﻿using LetMeRate.Application.Commands;
+using LetMeRate.Application.Security;
 using Simple.Data;
 
 namespace LetMeRate.Application.Services
@@ -14,18 +15,20 @@ namespace LetMeRate.Application.Services
             _securityDigest = securityDigest;
         }
 
-        public void CreateAccount(string email, string password)
+        public void CreateAccount(AddAccountCommand addAccountCommand)
         {
             var key = _accountKeyGenerator.CreateKey();
             var passwordSalt = _securityDigest.CreateSalt();
-            var encPassword = _securityDigest.EncryptPhase(password, passwordSalt);
-
+            var encPassword = _securityDigest.EncryptPhase(addAccountCommand.Password, passwordSalt);
+            var email = addAccountCommand.Email;
+            var rateOutOf = addAccountCommand.RateOutOf;
 
             var db = Database.Open();
             var userAccount = db.UserAccount.Insert(Email: email, 
                                                     Password: encPassword,
                                                     PasswordSalt: passwordSalt, 
-                                                    Key: key);
+                                                    Key: key,
+                                                    RateOutOf: (int)rateOutOf);
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using LetMeRate.Application;
+using LetMeRate.Application.Commands;
 using LetMeRate.Application.Services;
 using Nancy;
 
@@ -23,9 +24,10 @@ namespace LetMeRate.Web
 
             Post["/Account/Create"] = x =>
                                           {
-                                              string emailAddress = this.Request.Form.EmailAddress;
-                                              string password = this.Request.Form.Password;
-                                              _accountService.CreateAccount(emailAddress, password);
+                                              var command = new AddAccountCommand(Request.Form.EmailAddress,
+                                                                                  Request.Form.Password,
+                                                                                  uint.Parse(Request.Form.RateOutOf));
+                                              _accountService.CreateAccount(command);
 
                 return "Test";
             };

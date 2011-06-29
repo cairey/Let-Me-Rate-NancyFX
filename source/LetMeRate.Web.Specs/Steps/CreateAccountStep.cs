@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using Nancy;
 using Nancy.Testing;
 using TechTalk.SpecFlow;
 
-namespace LetMeRate.Web.Specs
+namespace LetMeRate.Web.Specs.Steps
 {
     [Binding]
-    public class CreateAccountSteps
+    public class CreateAccountStep
     {
         private Browser _browser;
         private BrowserResponse _response;
@@ -29,6 +25,7 @@ namespace LetMeRate.Web.Specs
                 with.HttpRequest();
                 with.FormValue("EmailAddress", "example@example.com");
                 with.FormValue("Password", "Pa55word");
+                with.FormValue("RateOutOf", "100");
             }); 
         }
 
