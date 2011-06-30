@@ -26,7 +26,7 @@ namespace LetMeRate.Web
 
             Post["/{Key}/Rate"] = x =>
                                         {
-                                            var command = new AddRatingCommand(uint.Parse(Request.Form.Rating), Request.Form.CustomParams, x.Key);
+                                            var command = new AddRatingCommand(uint.Parse(Request.Form.Rating), Request.Form.CustomParams, new AccountContext(x.Key));
                                             _ratingService.AddRating(command);
 
                 return "Test";
