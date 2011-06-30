@@ -82,9 +82,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GetRatings.feature</DependentUpon>
     </Compile>
+    <Compile Include="Setup\AddRating.cs" />
     <Compile Include="Setup\BrowserResponseExtensions.cs" />
     <Compile Include="Setup\ClearDatabase.cs" />
-    <Compile Include="Setup\CreateAccount.cs" />
+    <Compile Include="Setup\CreateUserAccount.cs" />
     <Compile Include="Setup\NancyRequest.cs" />
     <Compile Include="Steps\AddRatingStep.cs" />
     <Compile Include="Steps\GetRatingsStep.cs" />

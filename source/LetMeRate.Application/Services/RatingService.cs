@@ -27,15 +27,17 @@ namespace LetMeRate.Application.Services
 
 
             var db = Database.Open();
-            var rating = db.Rating.Insert(Id: Guid.NewGuid(),
+            var rating = db.Ratings.Insert(Id: Guid.NewGuid(),
                                             UserAccountId: userAccount.Id,
                                             CustomParams: addRatingCommand.CustomParams,
                                             Rating: (int)addRatingCommand.Rating);
         }
 
-        public void GetRatings(GetRatingsQuery getRatingsQuery)
+        public dynamic GetRatings(GetRatingsQuery getRatingsQuery)
         {
-            throw new NotImplementedException();
+            var db = Database.Open();
+            var userAccount = _accountService.GetUserAccountByKey(new GetAccountQuery(new AccountContext(getRatingsQuery.AccountContext.AccountKey)));
+            return db.Ratings.FindAllByUserAccountId(userAccount.Id);
         }
     }
 }

@@ -20,7 +20,7 @@ namespace LetMeRate.Web.Acceptance.Specs.Steps
             {
                 with.HttpRequest();
                 with.FormValue("Rating", "10");
-                with.FormValue("CustomParams", "{'MyVideoId': '1234'}");
+                with.FormValue("CustomParams", "{ \"VideoId\": \"1234\" }");
             }); 
         }
 

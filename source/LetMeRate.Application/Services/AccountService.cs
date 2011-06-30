@@ -26,7 +26,7 @@ namespace LetMeRate.Application.Services
             var rateOutOf = addUserAccountCommand.RateOutOf;
 
             var db = Database.Open();
-            db.UserAccount.Insert(Id : Guid.NewGuid(),
+            db.UserAccounts.Insert(Id : Guid.NewGuid(),
                                                     Email: email, 
                                                     Password: encPassword,
                                                     PasswordSalt: passwordSalt, 
@@ -40,7 +40,7 @@ namespace LetMeRate.Application.Services
         public dynamic GetUserAccountByKey(GetAccountQuery getAccountQuery)
         {
             var db = Database.Open();
-            var userAccount = db.UserAccount.FindAllByKey(getAccountQuery.AccountContext.AccountKey).FirstOrDefault();
+            var userAccount = db.UserAccounts.FindAllByKey(getAccountQuery.AccountContext.AccountKey).FirstOrDefault();
 
             if (userAccount == null) throw new Exception("The user account cannot be found with that key.");
             return userAccount;

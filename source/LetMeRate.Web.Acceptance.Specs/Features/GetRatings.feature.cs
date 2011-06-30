@@ -55,18 +55,22 @@ namespace LetMeRate.Web.Acceptance.Specs.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Adding a rating")]
-        [NUnit.Framework.CategoryAttribute("CreateUserAccount")]
+        [NUnit.Framework.CategoryAttribute("CreateAUserAccount")]
+        [NUnit.Framework.CategoryAttribute("AddARating")]
+        [NUnit.Framework.CategoryAttribute("Clear")]
         public virtual void AddingARating()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Adding a rating", new string[] {
-                        "CreateUserAccount"});
-#line 7
-this.ScenarioSetup(scenarioInfo);
-#line 8
-testRunner.Given("I am making web request");
+                        "CreateAUserAccount",
+                        "AddARating",
+                        "Clear"});
 #line 9
-testRunner.When("getting rating for my account");
+this.ScenarioSetup(scenarioInfo);
 #line 10
+testRunner.Given("I am making web request");
+#line 11
+testRunner.When("getting rating for my account");
+#line 12
 testRunner.Then("I should be able to see all my ratings");
 #line hidden
             testRunner.CollectScenarioErrors();

@@ -33,13 +33,16 @@ namespace LetMeRate.Web
             };
 
 
-            Post["/{Key}/Ratings"] = x =>
+            Get["/{Key}/Ratings"] = x =>
                                          {
                                              var query = new GetRatingsQuery(new AccountContext(x.Key));
+                                             var ratings = _ratingService.GetRatings(query);
+                                             
+                                             var ratingsList = new List<object>();
+                                             foreach (var rating in ratings)
+                                                 ratingsList.Add(new { rating.Rating, rating.CustomParams });
 
-                                             _ratingService.GetRatings(query);
-                
-                return "Test";
+                                             return Response.AsJson(ratingsList);
             };
 
         }        

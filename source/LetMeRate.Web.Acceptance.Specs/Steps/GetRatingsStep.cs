@@ -5,6 +5,7 @@ using System.Text;
 using LetMeRate.Web.Acceptance.Specs.Setup;
 using NUnit.Framework;
 using Nancy;
+using Nancy.Json;
 using Nancy.Testing;
 using TechTalk.SpecFlow;
 
@@ -19,8 +20,7 @@ namespace LetMeRate.Web.Acceptance.Specs.Steps
         [When(@"getting rating for my account")]
         public void WhenGettingRatingForMyAccount()
         {
-            var accountKey = FeatureContext.Current["AccountKey"];
-
+            var accountKey = FeatureContext.Current["AccountKey2"];
             _response = Browser.Get(string.Format("/{0}/Ratings", accountKey), with =>
             {
                 with.HttpRequest();
@@ -30,8 +30,11 @@ namespace LetMeRate.Web.Acceptance.Specs.Steps
         [Then(@"I should be able to see all my ratings")]
         public void ThenIShouldBeAbleToSeeAllMyRatings()
         {
-            ScenarioContext.Current.Pending();
+            var responseString = _response.GetBodyAsString();
+            var jss = new JavaScriptSerializer();
+            var result = jss.Deserialize<List<Dictionary<string,object>>>(responseString);
 
+            Assert.AreEqual(2, result.Count);
             Assert.AreEqual(HttpStatusCode.OK, _response.StatusCode);
         }
     }

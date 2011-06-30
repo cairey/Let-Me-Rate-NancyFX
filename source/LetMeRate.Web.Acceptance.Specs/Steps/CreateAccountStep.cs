@@ -29,10 +29,10 @@ namespace LetMeRate.Web.Acceptance.Specs.Steps
         public void ThenIShouldBeAbleToSeeMyCreatedAccount()
         {
             var responseString = _response.GetBodyAsString();
-            JavaScriptSerializer s = new JavaScriptSerializer();
-            var res = s.Deserialize<Dictionary<string, object>>(responseString);
+            var jss = new JavaScriptSerializer();
+            var result = jss.Deserialize<Dictionary<string, object>>(responseString);
 
-            Assert.IsNotNull(res["AccountKey"]);
+            Assert.IsNotNull(result["AccountKey"]);
             Assert.AreEqual(HttpStatusCode.OK, _response.StatusCode);
         }
     }

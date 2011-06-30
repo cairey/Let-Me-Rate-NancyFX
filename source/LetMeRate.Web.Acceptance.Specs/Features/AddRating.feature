@@ -4,7 +4,7 @@ As a user of Ratings
 I want to be able to see ratings
 
 
-@CreateUserAccount
+@CreateAUserAccount
 @Clear
 Scenario: adding a rating
 Given I am making web request

@@ -55,12 +55,12 @@ namespace LetMeRate.Web.Acceptance.Specs.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("adding a rating")]
-        [NUnit.Framework.CategoryAttribute("CreateUserAccount")]
+        [NUnit.Framework.CategoryAttribute("CreateAUserAccount")]
         [NUnit.Framework.CategoryAttribute("Clear")]
         public virtual void AddingARating()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("adding a rating", new string[] {
-                        "CreateUserAccount",
+                        "CreateAUserAccount",
                         "Clear"});
 #line 9
 this.ScenarioSetup(scenarioInfo);
