@@ -10,7 +10,7 @@
 //  </auto-generated>
 // ------------------------------------------------------------------------------
 #region Designer generated code
-namespace LetMeRate.Application.Specs
+namespace LetMeRate.Application.Specs.Features
 {
     using TechTalk.SpecFlow;
     
@@ -65,7 +65,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 9
  testRunner.And("I have generated a salt");
 #line 10
- testRunner.When("verifying that the hashed phases match");
+ testRunner.When("verifying the hashed phases with a correct phase");
 #line 11
  testRunner.Then("the result should be a match");
 #line hidden
@@ -84,7 +84,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 16
  testRunner.And("I have generated a salt");
 #line 17
- testRunner.When("verifying that the hashed phases match");
+ testRunner.When("verifying the hashed phases with an incorrect phase");
 #line 18
  testRunner.Then("the result should not be a match");
 #line hidden
