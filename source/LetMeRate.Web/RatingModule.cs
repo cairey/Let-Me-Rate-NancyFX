@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using LetMeRate.Application.Commands;
+using LetMeRate.Application.Query;
+using LetMeRate.Application.Security;
 using LetMeRate.Application.Services;
 using Nancy;
 
@@ -32,11 +34,11 @@ namespace LetMeRate.Web
 
 
             Post["/{Key}/Ratings"] = x =>
-            {
-                /*
-                var command = new AddRatingCommand(uint.Parse(Request.Form.Rating), Request.Form.CustomParams, x.Key);
-                _ratingService.AddRating(command);
-                */
+                                         {
+                                             var query = new GetRatingsQuery(new AccountContext(x.Key));
+
+                                             _ratingService.GetRatings(query);
+                
                 return "Test";
             };
 

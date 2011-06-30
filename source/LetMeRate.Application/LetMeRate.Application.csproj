@@ -51,8 +51,10 @@
   <ItemGroup>
     <Compile Include="Commands\AddUserAccountCommand.cs" />
     <Compile Include="Commands\AddRatingCommand.cs" />
+    <Compile Include="Security\WithAccountContext.cs" />
     <Compile Include="Query\GetAccountQuery.cs" />
     <Compile Include="Query\GetRatingsQuery.cs" />
+    <Compile Include="Security\AccountContext.cs" />
     <Compile Include="Services\AccountService.cs" />
     <Compile Include="Security\IAccountKeyGenerator.cs" />
     <Compile Include="Services\IAccountService.cs" />

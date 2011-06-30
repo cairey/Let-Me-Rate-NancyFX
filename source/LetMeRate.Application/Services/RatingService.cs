@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using LetMeRate.Application.Commands;
 using LetMeRate.Application.Query;
+using LetMeRate.Application.Security;
 using Simple.Data;
 
 namespace LetMeRate.Application.Services
@@ -19,7 +20,7 @@ namespace LetMeRate.Application.Services
 
         public void AddRating(AddRatingCommand addRatingCommand)
         {
-            var userAccount = _accountService.GetUserAccountByKey(new GetAccountQuery(addRatingCommand.AccountKey));
+            var userAccount = _accountService.GetUserAccountByKey(new GetAccountQuery(new AccountContext(addRatingCommand.AccountContext.AccountKey)));
             
             if (addRatingCommand.Rating > userAccount.RateOutOf)
                 throw new Exception("You cannot rate higher than the setting set by your account.");
@@ -32,5 +33,9 @@ namespace LetMeRate.Application.Services
                                             Rating: (int)addRatingCommand.Rating);
         }
 
+        public void GetRatings(GetRatingsQuery getRatingsQuery)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

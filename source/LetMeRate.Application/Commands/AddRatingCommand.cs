@@ -1,22 +1,19 @@
-﻿namespace LetMeRate.Application.Commands
+﻿using LetMeRate.Application.Security;
+
+namespace LetMeRate.Application.Commands
 {
-    public class AddRatingCommand
+    public class AddRatingCommand : WithAccountContext
     {
         private readonly uint _rating;
         private readonly string _customParams;
-        private readonly string _accountKey;
 
-        public AddRatingCommand(uint rating, string customParams, string accountKey)
+        public AddRatingCommand(uint rating, string customParams, AccountContext accountContext)
+            : base(accountContext)
         {
             _rating = rating;
             _customParams = customParams;
-            _accountKey = accountKey;
         }
 
-        public string AccountKey
-        {
-            get { return _accountKey; }
-        }
 
         public string CustomParams
         {

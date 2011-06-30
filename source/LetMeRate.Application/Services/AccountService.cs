@@ -19,7 +19,7 @@ namespace LetMeRate.Application.Services
 
         public dynamic CreateAccount(AddUserAccountCommand addUserAccountCommand)
         {
-            var key = _accountKeyGenerator.CreateKey();
+            var accountKey = _accountKeyGenerator.CreateKey();
             var passwordSalt = _securityDigest.CreateSalt();
             var encPassword = _securityDigest.EncryptPhase(addUserAccountCommand.Password, passwordSalt);
             var email = addUserAccountCommand.Email;
@@ -30,17 +30,17 @@ namespace LetMeRate.Application.Services
                                                     Email: email, 
                                                     Password: encPassword,
                                                     PasswordSalt: passwordSalt, 
-                                                    Key: key,
+                                                    Key: accountKey,
                                                     RateOutOf: (int)rateOutOf);
 
-            return GetUserAccountByKey(new GetAccountQuery(key));
+            return GetUserAccountByKey(new GetAccountQuery(new AccountContext(accountKey)));
         }
 
 
         public dynamic GetUserAccountByKey(GetAccountQuery getAccountQuery)
         {
             var db = Database.Open();
-            var userAccount = db.UserAccount.FindAllByKey(getAccountQuery.AccountKey).FirstOrDefault();
+            var userAccount = db.UserAccount.FindAllByKey(getAccountQuery.AccountContext.AccountKey).FirstOrDefault();
 
             if (userAccount == null) throw new Exception("The user account cannot be found with that key.");
             return userAccount;

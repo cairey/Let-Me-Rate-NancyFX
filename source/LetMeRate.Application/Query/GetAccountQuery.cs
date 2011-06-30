@@ -2,21 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using LetMeRate.Application.Security;
 
 namespace LetMeRate.Application.Query
 {
-    public class GetAccountQuery
+    public class GetAccountQuery : WithAccountContext
     {
-        private readonly string _accountKey;
-
-        public GetAccountQuery(string accountKey)
+        public GetAccountQuery(AccountContext accountContext)
+            : base(accountContext)
         {
-            _accountKey = accountKey;
         }
 
-        public string AccountKey
-        {
-            get { return _accountKey; }
-        }
     }
 }
