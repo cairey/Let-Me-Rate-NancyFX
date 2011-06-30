@@ -14,7 +14,7 @@ Albacore.configure do |config|
 end
 
 desc "Compiles solution and runs unit tests"
-task :default => [:clean, :version, :compile, :nunit, :create_db]
+task :default => [:clean, :version, :compile, :create_db, :nunit]
 
 desc "Executes all MSpec and Xunit tests"
 task :test => [:mspec, :xunit]
