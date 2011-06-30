@@ -18,20 +18,21 @@ namespace LetMeRate.Application.Specs.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.6.1.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("Security")]
-    public partial class SecurityFeature
+    [NUnit.Framework.DescriptionAttribute("Account Key Generation")]
+    public partial class AccountKeyGenerationFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "Security.feature"
+#line 1 "AccountKeyGenerator.feature"
 #line hidden
         
         [NUnit.Framework.TestFixtureSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Security", "In order to very a phase\r\nAs a user\r\nI want my phase to be securely verified", GenerationTargetLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Account Key Generation", "In order for users to access Let Me Rate securely\r\nAs a user of ratings\r\nI want t" +
+                    "o be able to generate a unqique account key", GenerationTargetLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -54,39 +55,18 @@ namespace LetMeRate.Application.Specs.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Verify security with correct phase")]
-        public virtual void VerifySecurityWithCorrectPhase()
+        [NUnit.Framework.DescriptionAttribute("Generate Account Key")]
+        public virtual void GenerateAccountKey()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify security with correct phase", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Generate Account Key", ((string[])(null)));
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line 8
- testRunner.Given("I have supplied a phase");
+ testRunner.Given("I have an account key generator");
 #line 9
- testRunner.And("I have generated a salt");
+ testRunner.When("I generate an account key");
 #line 10
- testRunner.When("verifying the hashed phases with a correct phase");
-#line 11
- testRunner.Then("the result should be a match");
-#line hidden
-            testRunner.CollectScenarioErrors();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Verify security with incorrect phase")]
-        public virtual void VerifySecurityWithIncorrectPhase()
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify security with incorrect phase", ((string[])(null)));
-#line 14
-this.ScenarioSetup(scenarioInfo);
-#line 15
- testRunner.Given("I have supplied a phase");
-#line 16
- testRunner.And("I have generated a salt");
-#line 17
- testRunner.When("verifying the hashed phases with an incorrect phase");
-#line 18
- testRunner.Then("the result should not be a match");
+ testRunner.Then("I should get back a unique key");
 #line hidden
             testRunner.CollectScenarioErrors();
         }

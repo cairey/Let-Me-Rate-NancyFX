@@ -50,18 +50,28 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Features\Security.feature.cs">
+    <Compile Include="Features\AccountKeyGenerator.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Security.feature</DependentUpon>
+      <DependentUpon>AccountKeyGenerator.feature</DependentUpon>
     </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Features\SecurityDigest.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SecurityDigest.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Steps\AccountKeyGeneratorStep.cs" />
     <Compile Include="Steps\SecurityDigestStep.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Features\Security.feature">
+    <None Include="Features\AccountKeyGenerator.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>Security.feature.cs</LastGenOutput>
+      <LastGenOutput>AccountKeyGenerator.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\SecurityDigest.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>SecurityDigest.feature.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>

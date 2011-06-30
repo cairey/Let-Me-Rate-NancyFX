@@ -17,7 +17,7 @@ namespace LetMeRate.Web
             container.Register<IAccountService, AccountService>().AsSingleton();
             container.Register<IRatingService, RatingService>().AsSingleton();
 
-            container.Register<IAccountKeyGenerator, KeyGenerator>().AsSingleton();
+            container.Register<IAccountKeyGenerator, AccountKeyGenerator>().AsSingleton();
             container.Register<ISecurityDigest, SecurityDigest>().AsSingleton();
         }
     }

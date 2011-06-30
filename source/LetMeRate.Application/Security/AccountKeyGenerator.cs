@@ -2,7 +2,7 @@ using System;
 
 namespace LetMeRate.Application.Security
 {
-    public class KeyGenerator : IAccountKeyGenerator
+    public class AccountKeyGenerator : IAccountKeyGenerator
     {
         public string CreateKey()
         {
