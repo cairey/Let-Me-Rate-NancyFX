@@ -9,21 +9,14 @@ using TechTalk.SpecFlow;
 namespace LetMeRate.Web.Acceptance.Specs.Steps
 {
     [Binding]
-    public class CreateAccountStep
+    public class CreateAccountStep : NancyRequestWrapper
     {
-        private Browser _browser;
         private BrowserResponse _response;
-
-        [Given(@"I am creating an account")]
-        public void GivenIAmCreatingAnAccount()
-        {
-             _browser = new Browser(new TestWebBootstrapper());
-        }
 
         [When(@"creating an account with my email and password")]
         public void WhenCreatingAnAccountWithMyEmailAndPassword()
         {
-            _response = _browser.Post("/Account/Create", with =>
+            _response = Browser.Post("/Account/Create", with =>
             {
                 with.HttpRequest();
                 with.FormValue("EmailAddress", "example@example.com");

@@ -23,7 +23,7 @@ namespace LetMeRate.Web.Acceptance.Specs.Setup
             var responseString = response.GetBodyAsString();
             JavaScriptSerializer s = new JavaScriptSerializer();
             var res = s.Deserialize<Dictionary<string, object>>(responseString);
-            FeatureContext.Current.Add("AccountKey", res["AccountKey"]);
+            FeatureContext.Current["AccountKey"] = res["AccountKey"];
         }
     }
 }

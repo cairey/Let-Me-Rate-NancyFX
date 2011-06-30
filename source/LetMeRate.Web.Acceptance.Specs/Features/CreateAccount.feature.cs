@@ -64,7 +64,7 @@ namespace LetMeRate.Web.Acceptance.Specs.Features
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line 8
-testRunner.Given("I am creating an account");
+testRunner.Given("I am making web request");
 #line 9
 testRunner.When("creating an account with my email and password");
 #line 10

@@ -77,10 +77,17 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AddRating.feature</DependentUpon>
     </Compile>
+    <Compile Include="Features\GetRatings.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GetRatings.feature</DependentUpon>
+    </Compile>
     <Compile Include="Setup\BrowserResponseExtensions.cs" />
     <Compile Include="Setup\ClearDatabase.cs" />
     <Compile Include="Setup\CreateAccount.cs" />
+    <Compile Include="Setup\NancyRequest.cs" />
     <Compile Include="Steps\AddRatingStep.cs" />
+    <Compile Include="Steps\GetRatingsStep.cs" />
     <Compile Include="TestWebBootstrapper.cs" />
     <Compile Include="Features\CreateAccount.feature.cs">
       <AutoGen>True</AutoGen>
@@ -99,6 +106,10 @@
     <None Include="Features\CreateAccount.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CreateAccount.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\GetRatings.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>GetRatings.feature.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>

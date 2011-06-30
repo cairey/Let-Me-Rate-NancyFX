@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using LetMeRate.Web.Acceptance.Specs.Setup;
+using NUnit.Framework;
 using Nancy;
 using Nancy.Testing;
 using TechTalk.SpecFlow;
@@ -6,23 +7,16 @@ using TechTalk.SpecFlow;
 namespace LetMeRate.Web.Acceptance.Specs.Steps
 {
     [Binding]
-    public class AddRatingStep
+    public class AddRatingStep : NancyRequestWrapper
     {
-        private Browser _browser;
-        private BrowserResponse _response;
-
-        [Given(@"I am using Ratings")]
-        public void GivenIAmUsingRatings()
-        {
-            _browser = new Browser(new TestWebBootstrapper());
-        }
+        protected BrowserResponse _response;
 
         [When(@"adding a rating for my account")]
         public void WhenAddingARatingForMyAccount()
         {
             var accountKey = FeatureContext.Current["AccountKey"];
 
-            _response = _browser.Post(string.Format("/{0}/Rate", accountKey), with =>
+            _response = Browser.Post(string.Format("/{0}/Rate", accountKey), with =>
             {
                 with.HttpRequest();
                 with.FormValue("Rating", "10");

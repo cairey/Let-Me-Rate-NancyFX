@@ -7,6 +7,6 @@ I want to be able to see ratings
 @CreateUserAccount
 @Clear
 Scenario: adding a rating
-Given I am using Ratings
+Given I am making web request
 When adding a rating for my account
 Then I should be able to see the rating i added

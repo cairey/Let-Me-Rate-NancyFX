@@ -65,7 +65,7 @@ namespace LetMeRate.Web.Acceptance.Specs.Features
 #line 9
 this.ScenarioSetup(scenarioInfo);
 #line 10
-testRunner.Given("I am using Ratings");
+testRunner.Given("I am making web request");
 #line 11
 testRunner.When("adding a rating for my account");
 #line 12
