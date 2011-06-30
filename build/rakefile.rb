@@ -14,7 +14,7 @@ Albacore.configure do |config|
 end
 
 desc "Compiles solution and runs unit tests"
-task :default => [:clean, :version, :compile, :nunit]
+task :default => [:clean, :version, :compile, :nunit, :create_db]
 
 desc "Executes all MSpec and Xunit tests"
 task :test => [:mspec, :xunit]
@@ -59,7 +59,16 @@ task :publish => [:compile] do
 	FileUtils.cp_r FileList["../source/**/#{CONFIGURATION}/*.dll"].exclude(/obj\//).exclude(/.Tests/), "#{OUTPUT}/binaries"
 end
 
-
+desc "Run the database scripts"
+sqlcmd :create_db do |sql|
+  
+  scripts = FileList["sql-scripts/*.sql"]
+  puts scripts
+  
+  sql.command = "sqlcmd.exe"
+  sql.server = ".\\SQLEXPRESS"
+  sql.scripts = scripts
+end
 
 desc "Zips up the built binaries for easy distribution"
 zip :package => [:publish] do |zip|
@@ -69,3 +78,8 @@ zip :package => [:publish] do |zip|
 	zip.output_file = "Comments-#{VERSION}.zip"
 	zip.output_path = "#{OUTPUT}/packages"
 end
+
+#TODO
+# - Deployment
+# - Integration changes (sql scripts)
+# - why is this so hard in .net?
