@@ -3,6 +3,7 @@ In order to see Ratings
 As a user of Ratings
 I want to be able to see ratings
 
+@CreateUserAccount
 Scenario: Adding a rating
 Given I am making web request
 When getting rating for my account

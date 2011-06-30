@@ -29,6 +29,17 @@ namespace LetMeRate.Web
 
                 return "Test";
             };
+
+
+            Post["/{Key}/Ratings"] = x =>
+            {
+                /*
+                var command = new AddRatingCommand(uint.Parse(Request.Form.Rating), Request.Form.CustomParams, x.Key);
+                _ratingService.AddRating(command);
+                */
+                return "Test";
+            };
+
         }        
 
 

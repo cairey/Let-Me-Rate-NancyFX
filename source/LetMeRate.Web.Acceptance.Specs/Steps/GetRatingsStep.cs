@@ -2,40 +2,37 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using LetMeRate.Web.Acceptance.Specs.Setup;
+using NUnit.Framework;
+using Nancy;
 using Nancy.Testing;
 using TechTalk.SpecFlow;
 
 namespace LetMeRate.Web.Acceptance.Specs.Steps
 {
-    /*
-    [Binding]
-    public class GetRatingsStep
-    {
-        private Browser Browser;
-        private BrowserResponse _response;
 
-        [Given(@"I am using Ratings")]
-        public void GivenIAmUsingRatings()
-        {
-            Browser = new Browser(new TestWebBootstrapper());
-        }
-     
-        [Given(@"I am making web request")]
-        public void GivenIAmMakingWebRequest()
-        {
-            ScenarioContext.Current.Pending();
-        }
+    [Binding]
+    public class GetRatingsStep : NancyRequestWrapper
+    {
+        private BrowserResponse _response;
 
         [When(@"getting rating for my account")]
         public void WhenGettingRatingForMyAccount()
         {
-            ScenarioContext.Current.Pending();
+            var accountKey = FeatureContext.Current["AccountKey"];
+
+            _response = Browser.Get(string.Format("/{0}/Ratings", accountKey), with =>
+            {
+                with.HttpRequest();
+            }); 
         }
 
         [Then(@"I should be able to see all my ratings")]
         public void ThenIShouldBeAbleToSeeAllMyRatings()
         {
             ScenarioContext.Current.Pending();
+
+            Assert.AreEqual(HttpStatusCode.OK, _response.StatusCode);
         }
-    }*/
+    }
 }

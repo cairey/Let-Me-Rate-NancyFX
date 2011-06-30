@@ -1,10 +1,11 @@
 ﻿using LetMeRate.Application.Commands;
+using LetMeRate.Application.Query;
 
 namespace LetMeRate.Application.Services
 {
     public interface IAccountService
     {
         dynamic CreateAccount(AddUserAccountCommand addUserAccountCommand);
-        dynamic GetUserAccountByKey(string accountKey);
+        dynamic GetUserAccountByKey(GetAccountQuery getAccountQuery);
     }
 }

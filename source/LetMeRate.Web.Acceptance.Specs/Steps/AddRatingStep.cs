@@ -9,7 +9,7 @@ namespace LetMeRate.Web.Acceptance.Specs.Steps
     [Binding]
     public class AddRatingStep : NancyRequestWrapper
     {
-        protected BrowserResponse _response;
+        private BrowserResponse _response;
 
         [When(@"adding a rating for my account")]
         public void WhenAddingARatingForMyAccount()

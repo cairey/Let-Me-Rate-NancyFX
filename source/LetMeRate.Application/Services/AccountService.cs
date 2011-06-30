@@ -1,5 +1,6 @@
 ﻿using System;
 using LetMeRate.Application.Commands;
+using LetMeRate.Application.Query;
 using LetMeRate.Application.Security;
 using Simple.Data;
 
@@ -32,14 +33,14 @@ namespace LetMeRate.Application.Services
                                                     Key: key,
                                                     RateOutOf: (int)rateOutOf);
 
-            return GetUserAccountByKey(key);
+            return GetUserAccountByKey(new GetAccountQuery(key));
         }
 
 
-        public dynamic GetUserAccountByKey(string accountKey)
+        public dynamic GetUserAccountByKey(GetAccountQuery getAccountQuery)
         {
             var db = Database.Open();
-            var userAccount = db.UserAccount.FindAllByKey(accountKey).FirstOrDefault();
+            var userAccount = db.UserAccount.FindAllByKey(getAccountQuery.AccountKey).FirstOrDefault();
 
             if (userAccount == null) throw new Exception("The user account cannot be found with that key.");
             return userAccount;
