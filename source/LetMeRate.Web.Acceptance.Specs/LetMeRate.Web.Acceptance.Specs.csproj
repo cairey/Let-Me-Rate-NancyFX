@@ -73,22 +73,27 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Features\AddRating.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>AddRating.feature</DependentUpon>
+      <SubType>Code</SubType>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="Features\GetRatings.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>GetRatings.feature</DependentUpon>
+      <SubType>Code</SubType>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
-    <Compile Include="Setup\AddRating.cs" />
     <Compile Include="Setup\BrowserResponseExtensions.cs" />
-    <Compile Include="Setup\ClearDatabase.cs" />
-    <Compile Include="Setup\CreateUserAccount.cs" />
+    <Compile Include="Setup\AfterScenarios.cs" />
+    <Compile Include="Setup\BeforeScenarios.cs" />
     <Compile Include="Setup\NancyRequest.cs" />
-    <Compile Include="Steps\AddRatingStep.cs" />
-    <Compile Include="Steps\GetRatingsStep.cs" />
+    <Compile Include="Steps\AddRatingStep.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Steps\GetRatingsStep.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="TestWebBootstrapper.cs" />
     <Compile Include="Features\CreateAccount.feature.cs">
       <AutoGen>True</AutoGen>
@@ -99,11 +104,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="Features\AddRating.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>AddRating.feature.cs</LastGenOutput>
     </None>
-    <None Include="App.config" />
     <None Include="Features\CreateAccount.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CreateAccount.feature.cs</LastGenOutput>

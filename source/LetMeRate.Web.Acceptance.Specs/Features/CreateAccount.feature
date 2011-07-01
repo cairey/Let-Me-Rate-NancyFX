@@ -3,7 +3,7 @@ In order to manage my account
 As a user of ratings
 I want to be able to create an account
 
-@Clear
+@ClearDatabase
 Scenario: Create Account
 Given I am making web request
 When creating an account with my email and password

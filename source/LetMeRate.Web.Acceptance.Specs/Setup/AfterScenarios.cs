@@ -6,10 +6,10 @@ using TechTalk.SpecFlow;
 namespace LetMeRate.Web.Acceptance.Specs.Setup
 {
     [Binding]
-    public class ClearDatabase
+    public class AfterScenarios
     {
         [AfterScenario]
-        public void Clear()
+        public void ClearDatabase()
         {
             // TODO why can't i do this with simple.data?
             var connString = ConfigurationManager.ConnectionStrings["Simple.Data.Properties.Settings.DefaultConnectionString"].ConnectionString;
