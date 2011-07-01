@@ -22,12 +22,11 @@ namespace LetMeRate.Web.Acceptance.Specs.Steps
         {
             var accountKey = FeatureContext.Current["AccountKey2"];
 
-            _response = Browser.Get(string.Format("/{0}/Ratings/Query", accountKey), with =>
+            _response = Browser.Get(string.Format("/{0}//Ratings/Between/Rating", accountKey), with =>
             {
                 with.HttpRequest();
-               // with.Query("minRating", "2");
+                with.Query("minRating", "2");
                 with.Query("maxRating", "100");
-                //with.Query("customParams", "videoId:1234,otherField:otherFieldValue");
             }); 
         }
 
@@ -35,14 +34,13 @@ namespace LetMeRate.Web.Acceptance.Specs.Steps
         [Then(@"I should be able to see all my ratings for my query")]
         public void ThenIShouldBeAbleToSeeAllMyRatingsForMyQuery()
         {
-            /*
             var responseString = _response.GetBodyAsString();
             var jss = new JavaScriptSerializer();
             var result = jss.Deserialize<List<Dictionary<string, object>>>(responseString);
 
             
             Assert.AreEqual(2, result.Count);
-            Assert.AreEqual(HttpStatusCode.OK, _response.StatusCode);*/
+            Assert.AreEqual(HttpStatusCode.OK, _response.StatusCode);
         }
     }
 }

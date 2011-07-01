@@ -5,7 +5,7 @@ I want to be able to see ratings
 
 
 @CreateUserAccounts
-@Clear
+@ClearDatabase
 Scenario: adding a rating
 Given I am making web request
 When adding a rating for my account

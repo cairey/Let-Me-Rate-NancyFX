@@ -64,7 +64,7 @@ namespace LetMeRate.Web.Acceptance.Specs.Setup
             var browser = new Browser(new TestWebBootstrapper());
 
             // 1
-            browser.Post(string.Format("/{0}/Rate", FeatureContext.Current["AccountKey"]), with =>
+            browser.Post(string.Format("/{0}/Ratings", FeatureContext.Current["AccountKey"]), with =>
             {
                 with.HttpRequest();
                 with.FormValue("Rating", "50");
@@ -74,7 +74,7 @@ namespace LetMeRate.Web.Acceptance.Specs.Setup
 
 
             // 2
-            browser.Post(string.Format("/{0}/Rate", FeatureContext.Current["AccountKey2"]), with =>
+            browser.Post(string.Format("/{0}/Ratings", FeatureContext.Current["AccountKey2"]), with =>
             {
                 with.HttpRequest();
                 with.FormValue("Rating", "6");
@@ -83,7 +83,7 @@ namespace LetMeRate.Web.Acceptance.Specs.Setup
 
 
             // 3
-            browser.Post(string.Format("/{0}/Rate", FeatureContext.Current["AccountKey2"]), with =>
+            browser.Post(string.Format("/{0}/Ratings", FeatureContext.Current["AccountKey2"]), with =>
             {
                 with.HttpRequest();
                 with.FormValue("Rating", "7");
@@ -92,7 +92,7 @@ namespace LetMeRate.Web.Acceptance.Specs.Setup
 
 
             // 4
-            browser.Post(string.Format("/{0}/Rate", FeatureContext.Current["AccountKey3"]), with =>
+            browser.Post(string.Format("/{0}/Ratings", FeatureContext.Current["AccountKey3"]), with =>
             {
                 with.HttpRequest();
                 with.FormValue("Rating", "44");

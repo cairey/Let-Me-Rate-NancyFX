@@ -34,10 +34,6 @@ namespace LetMeRate.Web.Acceptance.Specs.Steps
             var jss = new JavaScriptSerializer();
             var result = jss.Deserialize<List<Dictionary<string,object>>>(responseString);
 
-            var firstItem = result.First();
-
-            Assert.IsTrue(firstItem.ContainsKey("VideoId"));
-            Assert.IsNotNull(firstItem["VideoId"]);
             Assert.AreEqual(2, result.Count);
             Assert.AreEqual(HttpStatusCode.OK, _response.StatusCode);
         }
