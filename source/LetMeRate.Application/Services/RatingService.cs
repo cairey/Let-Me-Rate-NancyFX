@@ -33,11 +33,12 @@ namespace LetMeRate.Application.Services
                                             Rating: (int)addRatingCommand.Rating);
         }
 
-        public dynamic GetRatings(GetRatingsQuery getRatingsQuery)
+        public dynamic GetAllRatings(GetAllRatingsQuery getAllRatingsQuery)
         {
             var db = Database.Open();
-            var userAccount = _accountService.GetUserAccountByKey(new GetAccountQuery(new AccountContext(getRatingsQuery.AccountContext.AccountKey)));
+            var userAccount = _accountService.GetUserAccountByKey(new GetAccountQuery(new AccountContext(getAllRatingsQuery.AccountContext.AccountKey)));
             return db.Ratings.FindAllByUserAccountId(userAccount.Id);
         }
+
     }
 }

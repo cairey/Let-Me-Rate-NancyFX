@@ -6,6 +6,6 @@ namespace LetMeRate.Application.Services
     public interface IRatingService
     {
         void AddRating(AddRatingCommand addRatingCommand);
-        dynamic GetRatings(GetRatingsQuery getRatingsQuery);
+        dynamic GetAllRatings(GetAllRatingsQuery getAllRatingsQuery);
     }
 }

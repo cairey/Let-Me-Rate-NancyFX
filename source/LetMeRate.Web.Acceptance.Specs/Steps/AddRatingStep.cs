@@ -16,7 +16,7 @@ namespace LetMeRate.Web.Acceptance.Specs.Steps
         {
             var accountKey = FeatureContext.Current["AccountKey"];
 
-            _response = Browser.Post(string.Format("/{0}/Rate", accountKey), with =>
+            _response = Browser.Post(string.Format("/{0}/Ratings", accountKey), with =>
             {
                 with.HttpRequest();
                 with.FormValue("Rating", "10");

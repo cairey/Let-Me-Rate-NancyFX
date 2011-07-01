@@ -24,7 +24,7 @@ namespace LetMeRate.Web
                 return "Test Route";
             };
 
-            Post["/{Key}/Rate"] = x =>
+            Post["/{Key}/Ratings"] = x =>
                                         {
                                             var command = new AddRatingCommand(uint.Parse(Request.Form.Rating), Request.Form.CustomParams, new AccountContext(x.Key));
                                             _ratingService.AddRating(command);
@@ -33,16 +33,23 @@ namespace LetMeRate.Web
             };
 
 
-            Get["/{Key}/Ratings"] = x =>
+            Get["/{Key}/Ratings/All"] = x =>
                                          {
-                                             var query = new GetRatingsQuery(new AccountContext(x.Key));
-                                             var ratings = _ratingService.GetRatings(query);
+                                             var query = new GetAllRatingsQuery(new AccountContext(x.Key));
+                                             var ratings = _ratingService.GetAllRatings(query);
                                              
                                              var ratingsList = new List<object>();
                                              foreach (var rating in ratings)
                                                  ratingsList.Add(new { rating.Rating, rating.CustomParams });
 
                                              return Response.AsJson(ratingsList);
+            };
+
+
+            Get["/{Key}/Ratings/Query"] = x =>
+            {
+
+                return null;
             };
 
         }        

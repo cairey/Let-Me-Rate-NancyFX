@@ -13,7 +13,7 @@ namespace LetMeRate.Web.Acceptance.Specs.Steps
 {
 
     [Binding]
-    public class GetRatingsStep : NancyRequestWrapper
+    public class GetAllRatingsStep : NancyRequestWrapper
     {
         private BrowserResponse _response;
 
@@ -21,7 +21,7 @@ namespace LetMeRate.Web.Acceptance.Specs.Steps
         public void WhenGettingRatingForMyAccount()
         {
             var accountKey = FeatureContext.Current["AccountKey2"];
-            _response = Browser.Get(string.Format("/{0}/Ratings", accountKey), with =>
+            _response = Browser.Get(string.Format("/{0}/Ratings/All", accountKey), with =>
             {
                 with.HttpRequest();
             }); 
@@ -34,6 +34,10 @@ namespace LetMeRate.Web.Acceptance.Specs.Steps
             var jss = new JavaScriptSerializer();
             var result = jss.Deserialize<List<Dictionary<string,object>>>(responseString);
 
+            var firstItem = result.First();
+
+            Assert.IsTrue(firstItem.ContainsKey("VideoId"));
+            Assert.IsNotNull(firstItem["VideoId"]);
             Assert.AreEqual(2, result.Count);
             Assert.AreEqual(HttpStatusCode.OK, _response.StatusCode);
         }
