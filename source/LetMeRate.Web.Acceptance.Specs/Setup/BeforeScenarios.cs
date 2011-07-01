@@ -68,7 +68,7 @@ namespace LetMeRate.Web.Acceptance.Specs.Setup
             {
                 with.HttpRequest();
                 with.FormValue("Rating", "50");
-                //with.FormValue("CustomParams", "{ \"VideoId\": \"1234\" }");
+                with.FormValue("CustomParams", "{ \"VideoId\": \"1234\" }");
                 with.FormValue("CustomParams", "1234");
             });
 
@@ -78,8 +78,7 @@ namespace LetMeRate.Web.Acceptance.Specs.Setup
             {
                 with.HttpRequest();
                 with.FormValue("Rating", "6");
-                //with.FormValue("CustomParams", "{ \"VideoId\": \"1234\" }");
-                with.FormValue("CustomParams", "0666");
+                with.FormValue("CustomParams", "{ \"VideoId\": \"1234\" }");
             });
 
 
@@ -88,8 +87,7 @@ namespace LetMeRate.Web.Acceptance.Specs.Setup
             {
                 with.HttpRequest();
                 with.FormValue("Rating", "7");
-                //with.FormValue("CustomParams", "{ \"VideoId\": \"1234\" }");
-                with.FormValue("CustomParams", "0664");
+                with.FormValue("CustomParams", "{ \"VideoId\": \"1234\" }");
             });
 
 
@@ -98,8 +96,7 @@ namespace LetMeRate.Web.Acceptance.Specs.Setup
             {
                 with.HttpRequest();
                 with.FormValue("Rating", "44");
-                //with.FormValue("CustomParams", "{ \"VideoId\": \"1234\" }");
-                with.FormValue("CustomParams", "7777");
+                with.FormValue("CustomParams", "{ \"VideoId\": \"1234\" }");
             });
         }
     }
