@@ -75,6 +75,29 @@ testRunner.Then("I should be able to see all my ratings");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Getting ratings between ratings")]
+        [NUnit.Framework.CategoryAttribute("CreateUserAccounts")]
+        [NUnit.Framework.CategoryAttribute("AddRatings")]
+        [NUnit.Framework.CategoryAttribute("ClearDatabase")]
+        public virtual void GettingRatingsBetweenRatings()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Getting ratings between ratings", new string[] {
+                        "CreateUserAccounts",
+                        "AddRatings",
+                        "ClearDatabase"});
+#line 20
+this.ScenarioSetup(scenarioInfo);
+#line 21
+testRunner.Given("I am making web request");
+#line 22
+testRunner.When("getting ratings for my account and between 7 and 10");
+#line 23
+testRunner.Then("I should be able to see all my ratings for my query");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
     }
 }
 #endregion

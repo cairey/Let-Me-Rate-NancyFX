@@ -12,21 +12,21 @@ using TechTalk.SpecFlow;
 namespace LetMeRate.Web.Acceptance.Specs.Steps
 {
     [Binding]
-    public class GetRatingsQueryStep : NancyRequestWrapper
+    public class GetRatingsBetweenStep : NancyRequestWrapper
     {
         private BrowserResponse _response;
 
 
-        [When(@"getting ratings for my account and query parameters")]
-        public void WhenGettingRatingForMyAccountAndQueryParameters()
+        [When(@"getting ratings for my account and between 7 and 10")]
+        public void WhenGettingRatingsForMyAccountAndBetween7And10()
         {
             var accountKey = FeatureContext.Current["AccountKey2"];
 
-            _response = Browser.Get(string.Format("/{0}//Ratings/Between/Rating", accountKey), with =>
+            _response = Browser.Get(string.Format("/{0}/Ratings/Between/Rating", accountKey), with =>
             {
                 with.HttpRequest();
-                with.Query("minRating", "2");
-                with.Query("maxRating", "100");
+                with.Query("minRating", "7");
+                with.Query("maxRating", "10");
             }); 
         }
 
@@ -39,7 +39,7 @@ namespace LetMeRate.Web.Acceptance.Specs.Steps
             var result = jss.Deserialize<List<Dictionary<string, object>>>(responseString);
 
             
-            Assert.AreEqual(2, result.Count);
+            Assert.AreEqual(1, result.Count);
             Assert.AreEqual(HttpStatusCode.OK, _response.StatusCode);
         }
     }

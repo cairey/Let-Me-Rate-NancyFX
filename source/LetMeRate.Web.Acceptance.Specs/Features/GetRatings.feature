@@ -14,10 +14,10 @@ Then I should be able to see all my ratings
 
 
 
-#@CreateUserAccounts
-#@AddRatings
-#@ClearDatabase
-#Scenario: Getting ratings for my query
-#Given I am making web request
-#When getting ratings for my account and query parameters
-#Then I should be able to see all my ratings for my query
+@CreateUserAccounts
+@AddRatings
+@ClearDatabase
+Scenario: Getting ratings between ratings
+Given I am making web request
+When getting ratings for my account and between 7 and 10
+Then I should be able to see all my ratings for my query

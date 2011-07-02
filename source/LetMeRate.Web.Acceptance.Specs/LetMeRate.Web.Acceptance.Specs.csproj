@@ -91,7 +91,7 @@
     <Compile Include="Steps\AddRatingStep.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Steps\GetRatingsQueryStep.cs" />
+    <Compile Include="Steps\GetRatingsBetweenStep.cs" />
     <Compile Include="Steps\GetAllRatingsStep.cs">
       <SubType>Code</SubType>
     </Compile>
