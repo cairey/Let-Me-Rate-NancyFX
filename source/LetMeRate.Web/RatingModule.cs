@@ -37,12 +37,7 @@ namespace LetMeRate.Web
                                          {
                                              var query = new GetAllRatingsQuery(new AccountContext(x.Key));
                                              var ratings = _ratingService.GetAllRatings(query);
-
-                                             var ratingsList = new List<object>();
-                                             foreach (var rating in ratings)
-                                                 ratingsList.Add(new { rating.Rating, rating.CustomParams });
-
-                                             return Response.AsJson(ratingsList);
+                                             return this.AsJsonRatings(ratings);
                                          };
 
 
@@ -51,16 +46,21 @@ namespace LetMeRate.Web
 
                                             var query = new GetRatingsBetweenRatingQuery(new AccountContext(x.Key), Request.Query.minRating, Request.Query.maxRating);
                                             var ratings = _ratingService.GetRatingsBetweenRating(query);
-
-                                            var ratingsList = new List<object>();
-                                            foreach (var rating in ratings)
-                                                ratingsList.Add(new { rating.Rating, rating.CustomParams });
-
-                                            return Response.AsJson(ratingsList);
+                                            return this.AsJsonRatings(ratings);
                                         };
 
         }
 
+
+
+        private Response AsJsonRatings(dynamic ratings)
+        {
+            var ratingsList = new List<object>();
+            foreach (var rating in ratings)
+                ratingsList.Add(new { rating.Rating, rating.CustomParams });
+
+            return Response.AsJson(ratingsList);
+        }
 
     }
 }
