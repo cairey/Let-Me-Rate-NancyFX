@@ -49,11 +49,15 @@ namespace LetMeRate.Application.Services
                 && db.Ratings.UserAccountId == userAccount.Id);
         }
 
+        
         public dynamic GetRatingsByCustomParam(GetRatingsCustomParamQuery getRatingsCustomParamQuery)
         {
+            // open to sql injection
             var db = Database.Open();
             var userAccount = GetUserAccount(getRatingsCustomParamQuery.AccountContext.AccountKey);
-            return db.Ratings.FindAll(db.Ratings.CustomParams.Like("%VideoId[\"''][:][ ][\"'']1337%")
+            var like = "%" + getRatingsCustomParamQuery.CustomParam + "[\"''][:][ ][\"'']" + getRatingsCustomParamQuery.CustomQuery + "%";
+
+            return db.Ratings.FindAll(db.Ratings.CustomParams.Like(like)
                                         && db.Ratings.UserAccountId == userAccount.Id);
         }
 

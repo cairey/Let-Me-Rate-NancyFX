@@ -24,7 +24,7 @@ namespace LetMeRate.Web.Acceptance.Specs.Steps
             _response = Browser.Get(string.Format("/{0}/Ratings/Custom", accountKey), with =>
             {
                 with.HttpRequest();
-                with.Query("VideoID", "1234");
+                with.Query("VideoID", "1337");
             }); 
         }
 
