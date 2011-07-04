@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using LetMeRate.Application.Commands;
 using LetMeRate.Application.Query;
 using LetMeRate.Application.Security;
 using LetMeRate.Application.Services;
 using Nancy;
+using System.Linq;
 
 namespace LetMeRate.Web
 {
@@ -41,6 +41,19 @@ namespace LetMeRate.Web
                                          };
 
 
+            Get["/{Key}/Ratings/Custom"] = x =>
+                                               {
+                                                   Dictionary<string, object>.KeyCollection keys = Request.Query.GetDynamicMemberNames();
+                                                   var customParam = keys.First();
+                                                   var queryParam = Request.Query[customParam];
+
+                                                   var query = new GetRatingsCustomParamQuery(new AccountContext(x.Key), customParam, queryParam);
+                                                   var ratings = _ratingService.GetRatingsByCustomParam(query);
+                                                   return this.AsJsonRatings(ratings);
+                                               };
+
+
+
             Get["/{Key}/Ratings/Between/Rating"] = x =>
                                         {
 
@@ -48,6 +61,9 @@ namespace LetMeRate.Web
                                             var ratings = _ratingService.GetRatingsBetweenRating(query);
                                             return this.AsJsonRatings(ratings);
                                         };
+
+
+
 
         }
 

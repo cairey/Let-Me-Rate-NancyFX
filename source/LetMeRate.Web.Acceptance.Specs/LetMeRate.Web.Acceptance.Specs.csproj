@@ -91,10 +91,11 @@
     <Compile Include="Steps\AddRatingStep.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Steps\GetRatingsBetweenStep.cs" />
+    <Compile Include="Steps\GetRatingsBetweenRatingsStep.cs" />
     <Compile Include="Steps\GetAllRatingsStep.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Steps\GetRatingsCustomParamSteps.cs" />
     <Compile Include="TestWebBootstrapper.cs" />
     <Compile Include="Features\CreateAccount.feature.cs">
       <AutoGen>True</AutoGen>

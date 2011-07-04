@@ -98,6 +98,29 @@ testRunner.Then("I should be able to see all my ratings for my query");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Getting ratings for my custom parameter")]
+        [NUnit.Framework.CategoryAttribute("CreateUserAccounts")]
+        [NUnit.Framework.CategoryAttribute("AddRatings")]
+        [NUnit.Framework.CategoryAttribute("ClearDatabase")]
+        public virtual void GettingRatingsForMyCustomParameter()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Getting ratings for my custom parameter", new string[] {
+                        "CreateUserAccounts",
+                        "AddRatings",
+                        "ClearDatabase"});
+#line 29
+this.ScenarioSetup(scenarioInfo);
+#line 30
+testRunner.Given("I am making web request");
+#line 31
+testRunner.When("getting ratings for my account and and my custom parameter");
+#line 32
+testRunner.Then("I should be able to see all my ratings for my custom query");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
     }
 }
 #endregion

@@ -69,7 +69,6 @@ namespace LetMeRate.Web.Acceptance.Specs.Setup
                 with.HttpRequest();
                 with.FormValue("Rating", "50");
                 with.FormValue("CustomParams", "{ \"VideoId\": \"1012\" }");
-                with.FormValue("CustomParams", "1234");
             });
 
 

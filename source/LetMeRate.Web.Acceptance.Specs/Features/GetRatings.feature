@@ -21,3 +21,12 @@ Scenario: Getting ratings between ratings
 Given I am making web request
 When getting ratings for my account and between 7 and 10
 Then I should be able to see all my ratings for my query
+
+
+@CreateUserAccounts
+@AddRatings
+@ClearDatabase
+Scenario: Getting ratings for my custom parameter
+Given I am making web request
+When getting ratings for my account and and my custom parameter
+Then I should be able to see all my ratings for my custom query

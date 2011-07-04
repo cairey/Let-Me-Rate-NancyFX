@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Commands\AddUserAccountCommand.cs" />
     <Compile Include="Commands\AddRatingCommand.cs" />
+    <Compile Include="Query\GetRatingsCustomParamQuery.cs" />
     <Compile Include="Query\GetRatingsBetweenRatingQuery.cs" />
     <Compile Include="Security\WithAccountContext.cs" />
     <Compile Include="Query\GetAccountQuery.cs" />

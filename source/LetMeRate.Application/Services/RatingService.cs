@@ -46,7 +46,15 @@ namespace LetMeRate.Application.Services
             var userAccount = GetUserAccount(getRatingsBetweenRatingQuery.AccountContext.AccountKey);
             return db.Ratings.FindAll(db.Ratings.Rating >= getRatingsBetweenRatingQuery.MinRating
                 && db.Ratings.Rating <= getRatingsBetweenRatingQuery.MaxRating
-                && db.Rating.UserAccountId == userAccount.Id);
+                && db.Ratings.UserAccountId == userAccount.Id);
+        }
+
+        public dynamic GetRatingsByCustomParam(GetRatingsCustomParamQuery getRatingsCustomParamQuery)
+        {
+            var db = Database.Open();
+            var userAccount = GetUserAccount(getRatingsCustomParamQuery.AccountContext.AccountKey);
+            return db.Ratings.FindAll(db.Ratings.CustomParams.Like("%VideoId[\"''][:][ ][\"'']1337%")
+                                        && db.Ratings.UserAccountId == userAccount.Id);
         }
 
         private dynamic GetUserAccount(string accountKey)
