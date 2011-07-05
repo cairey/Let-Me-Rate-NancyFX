@@ -78,6 +78,11 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
+    <Compile Include="Features\DeleteRating.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DeleteRating.feature</DependentUpon>
+    </Compile>
     <Compile Include="Features\GetRatings.feature.cs">
       <DependentUpon>GetRatings.feature</DependentUpon>
       <SubType>Code</SubType>
@@ -114,6 +119,10 @@
     <None Include="Features\CreateAccount.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CreateAccount.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\DeleteRating.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>DeleteRating.feature.cs</LastGenOutput>
     </None>
     <None Include="Features\GetRatings.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
