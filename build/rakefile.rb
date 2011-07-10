@@ -1,12 +1,16 @@
 require 'rubygems'
 require 'albacore'
 require 'rake/clean'
+require 'fileutils'
 
 VERSION = "0.5.0"
 OUTPUT = "output"
 CONFIGURATION = 'Release'
 SHARED_ASSEMBLY_INFO = '../source/SharedAssemblyInfo.cs'
 SOLUTION_FILE = '../source/LetMeRate.sln'
+ENVIRONMENT = ENV["env"] || "dev"
+DEPLOY_PATH = 'C:/Websites/LetMeRate'
+
 
 Albacore.configure do |config|
 	config.log_level = :verbose
@@ -14,15 +18,21 @@ Albacore.configure do |config|
 end
 
 desc "Compiles solution and runs unit tests"
-task :default => [:version, :build, :create_db, :nunit, :build_package]
+task :default => [:version, :build, :create_db, :nunit, :build_package, :deploy]
 
-desc "Executes all MSpec and Xunit tests"
-task :test => [:mspec, :xunit]
 
 #Add the folders that should be cleaned as part of the clean task
-CLEAN.include(FileList["#{OUTPUT}/bin"])
-CLEAN.include(FileList[OUTPUT])
+CLEAN.include(OUTPUT)
 CLEAN.include(FileList["../source/**/#{CONFIGURATION}"])
+
+
+task :deploy do
+ mkdir_p DEPLOY_PATH
+ cp_r "#{OUTPUT}/.", DEPLOY_PATH
+ mv Dir.pwd + "/#{OUTPUT}/web.config.#{ENVIRONMENT}", "#{DEPLOY_PATH}/web.config"
+end
+
+
 
 desc "Update shared assemblyinfo file for the build"
 assemblyinfo :version => [:clean] do |asm|
@@ -69,6 +79,7 @@ end
 
 
 
+
 desc "Run the database scripts"
 sqlcmd :create_db do |sql|
   
@@ -92,3 +103,4 @@ end
 
 #TODO
 # - Integration changes (sql scripts)
+# - better deployment with IIS integration - modify hosts file etc.

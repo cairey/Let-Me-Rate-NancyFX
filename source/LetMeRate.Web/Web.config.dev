@@ -1,0 +1,35 @@
+﻿<?xml version="1.0"?>
+
+<configuration>
+  <configSections>
+    <section name="nancyFx" type="Nancy.Hosting.Aspnet.NancyFxSection" />
+  </configSections>
+
+
+
+  <connectionStrings>
+    <add name="Simple.Data.Properties.Settings.DefaultConnectionString" connectionString="data source=.\SQLEXPRESS;initial catalog=LetMeRate;integrated security=true" />
+  </connectionStrings>
+
+
+  <nancyFx>
+    <bootstrapper assembly="LetMeRate.Web" type="LetMeRate.Web.WebBootstrapper, LetMeRate.Web"/>
+  </nancyFx>
+
+
+  <system.web>
+    <compilation debug="true" targetFramework="4.0" />
+    <httpHandlers>
+      <add verb="*" type="Nancy.Hosting.Aspnet.NancyHttpRequestHandler" path="*"/>
+    </httpHandlers>
+  </system.web>
+
+  <system.webServer>
+    <modules runAllManagedModulesForAllRequests="true"/>
+    <validation validateIntegratedModeConfiguration="false"/>
+    <handlers>
+      <add name="Nancy" verb="*" type="Nancy.Hosting.Aspnet.NancyHttpRequestHandler" path="*"/>
+    </handlers>
+  </system.webServer>
+
+</configuration>
