@@ -29,6 +29,7 @@ namespace LetMeRate.Application.Services
             var db = Database.Open();
             var rating = db.Ratings.Insert(Id: Guid.NewGuid(),
                                             UserAccountId: userAccount.Id,
+                                            UniqueKey: addRatingCommand.UniqueKey,
                                             CustomParams: addRatingCommand.CustomParams,
                                             Rating: (int)addRatingCommand.Rating);
         }
@@ -59,6 +60,15 @@ namespace LetMeRate.Application.Services
 
             return db.Ratings.FindAll(db.Ratings.CustomParams.Like(like)
                                         && db.Ratings.UserAccountId == userAccount.Id);
+        }
+
+        public dynamic GetRatingByUniqueKey(GetRatingUniqueKeyQuery getRatingUniqueKeyQuery)
+        {
+            var db = Database.Open();
+            var userAccount = GetUserAccount(getRatingUniqueKeyQuery.AccountContext.AccountKey);
+
+            return db.ratings.FindAll(db.Ratings.UniqueKey == getRatingUniqueKeyQuery.UniqueKey
+                                                && db.Ratings.UserAccountId == userAccount.Id);
         }
 
         private dynamic GetUserAccount(string accountKey)

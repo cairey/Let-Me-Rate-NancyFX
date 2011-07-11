@@ -12,24 +12,25 @@ using TechTalk.SpecFlow;
 namespace LetMeRate.Web.Acceptance.Specs.Steps
 {
     [Binding]
-    public class GetRatingsCustomParamSteps : NancyRequestWrapper
+    public class GetRatingsUniqueKeyStep : NancyRequestWrapper
     {
         private BrowserResponse _response;
+        private int _uniqueKey;
 
-        [When(@"getting ratings for my account and and my custom parameter")]
-        public void WhenGettingRatingsForMyAccountAndAndMyCustomParameter()
+        [When(@"getting ratings for my account and unique key")]
+        public void WhenGettingRatingsForMyAccountAndUniqueKey()
         {
-            var accountKey = FeatureContext.Current["AccountKey3"];
+            var accountKey = FeatureContext.Current["AccountKey"];
+            _uniqueKey = 1;
 
-            _response = Browser.Get(string.Format("/{0}/Ratings/Custom", accountKey), with =>
+            _response = Browser.Get(string.Format("/{0}/Ratings/Key/{1}", accountKey, _uniqueKey), with =>
             {
                 with.HttpRequest();
-                with.Query("RelatedContent", "1337");
             }); 
         }
 
-        [Then(@"I should be able to see all my ratings for my custom query")]
-        public void ThenIShouldBeAbleToSeeAllMyRatingsForMyCustomQuery()
+        [Then(@"I should be able to see my rating for my key")]
+        public void ThenIShouldBeAbleToSeeMyRatingForMyKey()
         {
             var responseString = _response.GetBodyAsString();
             var jss = new JavaScriptSerializer();
@@ -39,6 +40,5 @@ namespace LetMeRate.Web.Acceptance.Specs.Steps
             Assert.AreEqual(1, result.Count);
             Assert.AreEqual(HttpStatusCode.OK, _response.StatusCode);
         }
-
     }
 }

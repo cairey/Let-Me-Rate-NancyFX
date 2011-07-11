@@ -4,7 +4,8 @@ CREATE TABLE [dbo].[Rating](
 	[Id] [uniqueidentifier] NOT NULL,
 	[UserAccountId] [uniqueidentifier] NOT NULL,
 	[Rating] [int] NOT NULL,
-	[CustomParams] [nvarchar](2048) NOT NULL,
+	[CustomParams] [nvarchar](max) NULL,
+	[UniqueKey] [nvarchar](256) NOT NULL,
  CONSTRAINT [PK_Rating] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC

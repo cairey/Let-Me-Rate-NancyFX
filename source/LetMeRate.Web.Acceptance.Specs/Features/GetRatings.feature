@@ -30,3 +30,13 @@ Scenario: Getting ratings for my custom parameter
 Given I am making web request
 When getting ratings for my account and and my custom parameter
 Then I should be able to see all my ratings for my custom query
+
+
+@CreateUserAccounts
+@AddRatings
+@ClearDatabase
+Scenario: Get rating by unique key
+Given I am making web request
+When getting ratings for my account and unique key
+Then I should be able to see my rating for my key
+

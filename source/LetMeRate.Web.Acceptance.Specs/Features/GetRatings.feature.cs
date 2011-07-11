@@ -121,6 +121,29 @@ testRunner.Then("I should be able to see all my ratings for my custom query");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Get rating by unique key")]
+        [NUnit.Framework.CategoryAttribute("CreateUserAccounts")]
+        [NUnit.Framework.CategoryAttribute("AddRatings")]
+        [NUnit.Framework.CategoryAttribute("ClearDatabase")]
+        public virtual void GetRatingByUniqueKey()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get rating by unique key", new string[] {
+                        "CreateUserAccounts",
+                        "AddRatings",
+                        "ClearDatabase"});
+#line 38
+this.ScenarioSetup(scenarioInfo);
+#line 39
+testRunner.Given("I am making web request");
+#line 40
+testRunner.When("getting ratings for my account and unique key");
+#line 41
+testRunner.Then("I should be able to see my rating for my key");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
     }
 }
 #endregion

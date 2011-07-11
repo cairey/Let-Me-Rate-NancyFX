@@ -102,6 +102,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Steps\GetRatingsCustomParamSteps.cs" />
+    <Compile Include="Steps\GetRatingsUniqueKeyStep.cs" />
     <Compile Include="TestWebBootstrapper.cs" />
     <Compile Include="Features\CreateAccount.feature.cs">
       <AutoGen>True</AutoGen>

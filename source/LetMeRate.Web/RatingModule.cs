@@ -26,11 +26,19 @@ namespace LetMeRate.Web
 
             Post["/{Key}/Ratings"] = x =>
                                         {
-                                            var command = new AddRatingCommand(uint.Parse(Request.Form.Rating), Request.Form.CustomParams, new AccountContext(x.Key));
+                                            var command = new AddRatingCommand(Request.Form.UniqueKey, uint.Parse(Request.Form.Rating), Request.Form.CustomParams, new AccountContext(x.Key));
                                             _ratingService.AddRating(command);
 
                                             return "Test";
                                         };
+
+            
+            Get["/{Key}/Ratings/Key/{UniqueKey}"] = x =>
+            {
+                var query = new GetRatingUniqueKeyQuery(new AccountContext(x.Key), x.UniqueKey);
+                var ratings = _ratingService.GetRatingByUniqueKey(query);
+                return this.AsJsonRatings(ratings);
+            };
 
 
             Get["/{Key}/Ratings/All"] = x =>

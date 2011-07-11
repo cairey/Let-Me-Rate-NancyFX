@@ -9,5 +9,6 @@ namespace LetMeRate.Application.Services
         dynamic GetAllRatings(GetAllRatingsQuery getAllRatingsQuery);
         dynamic GetRatingsBetweenRating(GetRatingsBetweenRatingQuery getRatingsBetweenRatingQuery);
         dynamic GetRatingsByCustomParam(GetRatingsCustomParamQuery getRatingsCustomParamQuery);
+        dynamic GetRatingByUniqueKey(GetRatingUniqueKeyQuery getRatingUniqueKeyQuery);
     }
 }
