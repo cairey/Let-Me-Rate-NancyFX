@@ -19,7 +19,7 @@ namespace LetMeRate.Web.Acceptance.Specs.Steps
         public void WhenIDeleteRatings()
         {
             var accountKey = FeatureContext.Current["AccountKey2"];
-            var uniqueKey = Guid.NewGuid();
+            var uniqueKey = 3;
 
             _response = Browser.Delete(string.Format("/{0}/Ratings/{1}", accountKey, uniqueKey), with =>
             {
@@ -32,6 +32,7 @@ namespace LetMeRate.Web.Acceptance.Specs.Steps
         [Then(@"my rating should have been deleted")]
         public void ThenMyRatingShouldHaveBeenDeleted()
         {
+            Assert.AreEqual("1", _response.GetBodyAsString());
             Assert.AreEqual(HttpStatusCode.OK, _response.StatusCode);
         }
     }

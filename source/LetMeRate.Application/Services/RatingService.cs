@@ -18,7 +18,7 @@ namespace LetMeRate.Application.Services
             _accountService = accountService;
         }
 
-        public void AddRating(AddRatingCommand addRatingCommand)
+        public dynamic AddRating(AddRatingCommand addRatingCommand)
         {
             var userAccount = GetUserAccount(addRatingCommand.AccountContext.AccountKey);
 
@@ -27,7 +27,7 @@ namespace LetMeRate.Application.Services
 
 
             var db = Database.Open();
-            var rating = db.Ratings.Insert(Id: Guid.NewGuid(),
+            return db.Ratings.Insert(Id: Guid.NewGuid(),
                                             UserAccountId: userAccount.Id,
                                             UniqueKey: addRatingCommand.UniqueKey,
                                             CustomParams: addRatingCommand.CustomParams,
@@ -69,6 +69,19 @@ namespace LetMeRate.Application.Services
 
             return db.ratings.FindAll(db.Ratings.UniqueKey == getRatingUniqueKeyQuery.UniqueKey
                                                 && db.Ratings.UserAccountId == userAccount.Id);
+        }
+
+        public dynamic DeleteRating(DeleteRatingCommand command)
+        {
+            var db = Database.Open();
+            var userAccount = GetUserAccount(command.AccountContext.AccountKey);
+            var ratings = db.ratings.FindAll(db.Ratings.UniqueKey == command.UniqueKey
+                                    && db.Ratings.UserAccountId == userAccount.Id);
+
+            var rating = ratings.FirstOrDefault();
+            if (rating == null) return 0;
+
+            return db.Ratings.DeleteById(rating.Id);
         }
 
         private dynamic GetUserAccount(string accountKey)

@@ -5,10 +5,11 @@ namespace LetMeRate.Application.Services
 {
     public interface IRatingService
     {
-        void AddRating(AddRatingCommand addRatingCommand);
+        dynamic AddRating(AddRatingCommand addRatingCommand);
         dynamic GetAllRatings(GetAllRatingsQuery getAllRatingsQuery);
         dynamic GetRatingsBetweenRating(GetRatingsBetweenRatingQuery getRatingsBetweenRatingQuery);
         dynamic GetRatingsByCustomParam(GetRatingsCustomParamQuery getRatingsCustomParamQuery);
         dynamic GetRatingByUniqueKey(GetRatingUniqueKeyQuery getRatingUniqueKeyQuery);
+        dynamic DeleteRating(DeleteRatingCommand command);
     }
 }
