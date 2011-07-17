@@ -95,6 +95,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>UpdateRating.feature</DependentUpon>
     </Compile>
+    <Compile Include="Features\VerifyAccount.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VerifyAccount.feature</DependentUpon>
+    </Compile>
     <Compile Include="Setup\BrowserResponseExtensions.cs" />
     <Compile Include="Setup\AfterScenarios.cs" />
     <Compile Include="Setup\BeforeScenarios.cs" />
@@ -140,6 +145,10 @@
     <None Include="Features\UpdateRating.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>UpdateRating.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\VerifyAccount.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>VerifyAccount.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
   </ItemGroup>

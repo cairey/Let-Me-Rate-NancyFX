@@ -18,21 +18,21 @@ namespace LetMeRate.Web.Acceptance.Specs.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.6.1.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("Create Account")]
-    public partial class CreateAccountFeature
+    [NUnit.Framework.DescriptionAttribute("Account validation")]
+    public partial class AccountValidationFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "CreateAccount.feature"
+#line 1 "VerifyAccount.feature"
 #line hidden
         
         [NUnit.Framework.TestFixtureSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Create Account", "In order to manage my account\r\nAs a user of ratings\r\nI want to be able to create " +
-                    "an account", GenerationTargetLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Account validation", "In order to validate my account\r\nAs a user of rating\r\nI want to be emailed a vali" +
+                    "dation link", GenerationTargetLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -55,22 +55,22 @@ namespace LetMeRate.Web.Acceptance.Specs.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Create Account")]
-        [NUnit.Framework.CategoryAttribute("ClearDatabase")]
-        public virtual void CreateAccount()
+        [NUnit.Framework.DescriptionAttribute("Validating account")]
+        [NUnit.Framework.CategoryAttribute("mytag")]
+        public virtual void ValidatingAccount()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create Account", new string[] {
-                        "ClearDatabase"});
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Validating account", new string[] {
+                        "mytag"});
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line 8
-testRunner.Given("I am making web request");
+ testRunner.Given("I have entered 50 into the calculator");
 #line 9
-testRunner.When("creating an account with my email and password");
+ testRunner.And("I have entered 70 into the calculator");
 #line 10
-testRunner.Then("I should be able to see my created account");
+ testRunner.When("I press add");
 #line 11
-testRunner.Then("I should be able to see an account validation url");
+ testRunner.Then("the result should be 120 on the screen");
 #line hidden
             testRunner.CollectScenarioErrors();
         }

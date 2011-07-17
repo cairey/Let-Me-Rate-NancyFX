@@ -35,5 +35,16 @@ namespace LetMeRate.Web.Acceptance.Specs.Steps
             Assert.IsNotNull(result["AccountKey"]);
             Assert.AreEqual(HttpStatusCode.OK, _response.StatusCode);
         }
+
+        [Then(@"I should be able to see an account validation url")]
+        public void ThenIShouldBeAbleToSeeAnAccountValidationUrl()
+        {
+            var responseString = _response.GetBodyAsString();
+            var jss = new JavaScriptSerializer();
+            var result = jss.Deserialize<Dictionary<string, object>>(responseString);
+
+            Assert.IsNotNull(result["AccountValidationUrl"]);
+            Assert.AreEqual(HttpStatusCode.OK, _response.StatusCode);
+        }
     }
 }

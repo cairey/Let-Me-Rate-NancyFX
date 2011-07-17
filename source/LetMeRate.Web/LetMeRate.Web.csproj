@@ -75,6 +75,7 @@
     <Reference Include="System.Web.ApplicationServices" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers\HttpRequestExtensions.cs" />
     <Compile Include="RatingModule.cs" />
     <Compile Include="WebBootstrapper.cs" />
     <Compile Include="AccountModule.cs" />
