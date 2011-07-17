@@ -89,6 +89,11 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
+    <Compile Include="Features\UpdateRating.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UpdateRating.feature</DependentUpon>
+    </Compile>
     <Compile Include="Setup\BrowserResponseExtensions.cs" />
     <Compile Include="Setup\AfterScenarios.cs" />
     <Compile Include="Setup\BeforeScenarios.cs" />
@@ -129,6 +134,10 @@
     <None Include="Features\GetRatings.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>GetRatings.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\UpdateRating.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>UpdateRating.feature.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>

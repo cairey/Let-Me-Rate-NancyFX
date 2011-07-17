@@ -18,21 +18,21 @@ namespace LetMeRate.Web.Acceptance.Specs.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.6.1.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("Delete Rating")]
-    public partial class DeleteRatingFeature
+    [NUnit.Framework.DescriptionAttribute("Update ratings")]
+    public partial class UpdateRatingsFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "DeleteRating.feature"
+#line 1 "UpdateRating.feature"
 #line hidden
         
         [NUnit.Framework.TestFixtureSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Delete Rating", "In order for my rating to not appear\r\nAs a user of ratings\r\nI want to be able to " +
-                    "remove a rating", GenerationTargetLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Update ratings", "In order for my rating to be updated.\r\nAs a user of ratings\r\nI want to send an up" +
+                    "dated rating.", GenerationTargetLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -55,47 +55,24 @@ namespace LetMeRate.Web.Acceptance.Specs.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Delete ratings when my rating exists")]
+        [NUnit.Framework.DescriptionAttribute("Add two numbers")]
         [NUnit.Framework.CategoryAttribute("CreateUserAccounts")]
         [NUnit.Framework.CategoryAttribute("AddRatings")]
         [NUnit.Framework.CategoryAttribute("ClearDatabase")]
-        public virtual void DeleteRatingsWhenMyRatingExists()
+        public virtual void AddTwoNumbers()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Delete ratings when my rating exists", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add two numbers", new string[] {
                         "CreateUserAccounts",
                         "AddRatings",
                         "ClearDatabase"});
 #line 9
 this.ScenarioSetup(scenarioInfo);
 #line 10
- testRunner.Given("I am making web request");
+testRunner.Given("I am making a web request");
 #line 11
- testRunner.When("I delete a rating with a known unique key");
+testRunner.When("I update my rating");
 #line 12
- testRunner.Then("my rating should have been deleted");
-#line hidden
-            testRunner.CollectScenarioErrors();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Delete ratings when my rating does not exists")]
-        [NUnit.Framework.CategoryAttribute("CreateUserAccounts")]
-        [NUnit.Framework.CategoryAttribute("AddRatings")]
-        [NUnit.Framework.CategoryAttribute("ClearDatabase")]
-        public virtual void DeleteRatingsWhenMyRatingDoesNotExists()
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Delete ratings when my rating does not exists", new string[] {
-                        "CreateUserAccounts",
-                        "AddRatings",
-                        "ClearDatabase"});
-#line 19
-this.ScenarioSetup(scenarioInfo);
-#line 20
- testRunner.Given("I am making web request");
-#line 21
- testRunner.When("I delete a rating that does not exist");
-#line 22
- testRunner.Then("my rating should not have been found");
+testRunner.Then("my rating should be updated.");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
