@@ -78,7 +78,15 @@ namespace LetMeRate.Web
 
             Put["/{Key}/Ratings/{UniqueKey}"] = x =>
                                                     {
-                                                        var command = new UpdateRatingCommand(x.UniqueKey, uint.Parse(Request.Form.Rating), Request.Form.CustomParams, new AccountContext(x.Key));
+                                                        string customParams = null;
+                                                        if(Request.Form.CustomParams.HasValue)
+                                                            customParams = Request.Form.CustomParams;
+
+                                                        uint? rating = null;
+                                                        if(Request.Form.Rating.HasValue)
+                                                            rating = uint.Parse(Request.Form.Rating);
+                                                        
+                                                        var command = new UpdateRatingCommand(x.UniqueKey, rating, customParams, new AccountContext(x.Key));
                                                         return Response.AsJson((int)_ratingService.UpdateRating(command));
                                                     };
         }

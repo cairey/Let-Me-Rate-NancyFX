@@ -41,7 +41,7 @@ namespace LetMeRate.Web.Acceptance.Specs.Steps
         public void WhenIUpdateMyRatingThatDoesNotExists()
         {
             var accountKey = FeatureContext.Current["AccountKey2"];
-            var uniqueKey = 3;
+            var uniqueKey = 9;
 
             _response = Browser.Put(string.Format("/{0}/Ratings/{1}", accountKey, uniqueKey), with =>
             {
@@ -55,7 +55,7 @@ namespace LetMeRate.Web.Acceptance.Specs.Steps
         [Then(@"my rating should not be updated")]
         public void ThenMyRatingShouldNotBeUpdated()
         {
-            Assert.AreEqual("1", _response.GetBodyAsString());
+            Assert.AreEqual("0", _response.GetBodyAsString());
             Assert.AreEqual(HttpStatusCode.OK, _response.StatusCode);
         }
     }
