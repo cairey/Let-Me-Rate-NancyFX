@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{43AEA94D-7007-473A-A113-7A7FE702E25B}</ProjectGuid>
+    <ProjectGuid>{FA32E03C-1BB2-46E5-89A4-B67BF09F10BD}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LetMeRate.Application</RootNamespace>
-    <AssemblyName>LetMeRate.Application</AssemblyName>
+    <RootNamespace>LetMeRate.Common</RootNamespace>
+    <AssemblyName>LetMeRate.Common</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,15 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Simple.Data">
-      <HintPath>..\packages\Simple.Data.Core.0.7.2\lib\net40\Simple.Data.dll</HintPath>
-    </Reference>
-    <Reference Include="Simple.Data.Ado">
-      <HintPath>..\packages\Simple.Data.Ado.0.7.2\lib\net40\Simple.Data.Ado.dll</HintPath>
-    </Reference>
-    <Reference Include="Simple.Data.SqlServer">
-      <HintPath>..\packages\Simple.Data.SqlServer.0.7.2\lib\net40\Simple.Data.SqlServer.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -49,35 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commands\AddUserAccountCommand.cs" />
-    <Compile Include="Commands\AddRatingCommand.cs" />
-    <Compile Include="Commands\DeleteRatingCommand.cs" />
-    <Compile Include="Commands\UpdateRatingCommand.cs" />
-    <Compile Include="Query\GetRatingsCustomParamQuery.cs" />
-    <Compile Include="Query\GetRatingsBetweenRatingQuery.cs" />
-    <Compile Include="Query\GetRatingUniqueKeyQuery.cs" />
-    <Compile Include="Security\WithAccountContext.cs" />
-    <Compile Include="Query\GetAccountQuery.cs" />
-    <Compile Include="Query\GetAllRatingsQuery.cs" />
-    <Compile Include="Security\AccountContext.cs" />
-    <Compile Include="Services\AccountService.cs" />
-    <Compile Include="Security\IAccountKeyGenerator.cs" />
-    <Compile Include="Services\IAccountService.cs" />
-    <Compile Include="Security\AccountKeyGenerator.cs" />
+    <Compile Include="ObjectExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Security\ISecurityDigest.cs" />
-    <Compile Include="Security\SecurityDigest.cs" />
-    <Compile Include="Services\IRatingService.cs" />
-    <Compile Include="Services\RatingService.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\LetMeRate.Common\LetMeRate.Common.csproj">
-      <Project>{FA32E03C-1BB2-46E5-89A4-B67BF09F10BD}</Project>
-      <Name>LetMeRate.Common</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

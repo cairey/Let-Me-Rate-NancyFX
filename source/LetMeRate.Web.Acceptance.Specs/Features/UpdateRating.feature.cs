@@ -55,24 +55,47 @@ namespace LetMeRate.Web.Acceptance.Specs.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Add two numbers")]
+        [NUnit.Framework.DescriptionAttribute("Updating a rating when it exists")]
         [NUnit.Framework.CategoryAttribute("CreateUserAccounts")]
         [NUnit.Framework.CategoryAttribute("AddRatings")]
         [NUnit.Framework.CategoryAttribute("ClearDatabase")]
-        public virtual void AddTwoNumbers()
+        public virtual void UpdatingARatingWhenItExists()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add two numbers", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Updating a rating when it exists", new string[] {
                         "CreateUserAccounts",
                         "AddRatings",
                         "ClearDatabase"});
 #line 9
 this.ScenarioSetup(scenarioInfo);
 #line 10
-testRunner.Given("I am making a web request");
+testRunner.Given("I am making web request");
 #line 11
-testRunner.When("I update my rating");
+testRunner.When("I update my rating that exists");
 #line 12
-testRunner.Then("my rating should be updated.");
+testRunner.Then("my rating should be updated");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Updating a rating when it does not exist")]
+        [NUnit.Framework.CategoryAttribute("CreateUserAccounts")]
+        [NUnit.Framework.CategoryAttribute("AddRatings")]
+        [NUnit.Framework.CategoryAttribute("ClearDatabase")]
+        public virtual void UpdatingARatingWhenItDoesNotExist()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Updating a rating when it does not exist", new string[] {
+                        "CreateUserAccounts",
+                        "AddRatings",
+                        "ClearDatabase"});
+#line 18
+this.ScenarioSetup(scenarioInfo);
+#line 19
+testRunner.Given("I am making web request");
+#line 20
+testRunner.When("I update my rating that does not exists");
+#line 21
+testRunner.Then("my rating should not be updated");
 #line hidden
             testRunner.CollectScenarioErrors();
         }

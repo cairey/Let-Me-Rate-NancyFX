@@ -11,5 +11,6 @@ namespace LetMeRate.Application.Services
         dynamic GetRatingsByCustomParam(GetRatingsCustomParamQuery getRatingsCustomParamQuery);
         dynamic GetRatingByUniqueKey(GetRatingUniqueKeyQuery getRatingUniqueKeyQuery);
         dynamic DeleteRating(DeleteRatingCommand command);
+        dynamic UpdateRating(UpdateRatingCommand command);
     }
 }

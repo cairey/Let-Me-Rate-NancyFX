@@ -6,7 +6,16 @@ I want to send an updated rating.
 @CreateUserAccounts
 @AddRatings
 @ClearDatabase
-Scenario: Add two numbers
-Given I am making a web request
-When I update my rating
-Then my rating should be updated.
+Scenario: Updating a rating when it exists
+Given I am making web request
+When I update my rating that exists
+Then my rating should be updated
+
+
+@CreateUserAccounts
+@AddRatings
+@ClearDatabase
+Scenario: Updating a rating when it does not exist
+Given I am making web request
+When I update my rating that does not exists
+Then my rating should not be updated

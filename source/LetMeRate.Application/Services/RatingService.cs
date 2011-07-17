@@ -5,6 +5,7 @@ using System.Text;
 using LetMeRate.Application.Commands;
 using LetMeRate.Application.Query;
 using LetMeRate.Application.Security;
+using LetMeRate.Common;
 using Simple.Data;
 
 namespace LetMeRate.Application.Services
@@ -82,6 +83,25 @@ namespace LetMeRate.Application.Services
             if (rating == null) return 0;
 
             return db.Ratings.DeleteById(rating.Id);
+        }
+
+        public dynamic UpdateRating(UpdateRatingCommand command)
+        {
+            var db = Database.Open();
+            var userAccount = GetUserAccount(command.AccountContext.AccountKey);
+            var ratings = db.ratings.FindAll(db.Ratings.UniqueKey == command.UniqueKey
+                        && db.Ratings.UserAccountId == userAccount.Id);
+
+            var rating = ratings.FirstOrDefault();
+            if (rating == null) return 0;
+
+            if(command.Rating.IsNotNull())
+                rating.Rating = command.Rating;
+
+            if (command.CustomParams.IsNotNull())
+                rating.CustomParams = command.CustomParams;
+
+            return db.ratings.Update(rating);
         }
 
         private dynamic GetUserAccount(string accountKey)

@@ -76,7 +76,11 @@ namespace LetMeRate.Web
                                                            return Response.AsJson((int)_ratingService.DeleteRating(command));
                                                        };
 
-
+            Put["/{Key}/Ratings/{UniqueKey}"] = x =>
+                                                    {
+                                                        var command = new UpdateRatingCommand(x.UniqueKey, uint.Parse(Request.Form.Rating), Request.Form.CustomParams, new AccountContext(x.Key));
+                                                        return Response.AsJson((int)_ratingService.UpdateRating(command));
+                                                    };
         }
 
 
