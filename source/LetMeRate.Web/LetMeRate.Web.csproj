@@ -75,7 +75,9 @@
     <Reference Include="System.Web.ApplicationServices" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers\HttpContextAccessor.cs" />
     <Compile Include="Helpers\HttpRequestExtensions.cs" />
+    <Compile Include="Helpers\IHttpContextAccessor.cs" />
     <Compile Include="RatingModule.cs" />
     <Compile Include="WebBootstrapper.cs" />
     <Compile Include="AccountModule.cs" />
@@ -94,14 +96,15 @@
       <Project>{43AEA94D-7007-473A-A113-7A7FE702E25B}</Project>
       <Name>LetMeRate.Application</Name>
     </ProjectReference>
+    <ProjectReference Include="..\LetMeRate.Common\LetMeRate.Common.csproj">
+      <Project>{FA32E03C-1BB2-46E5-89A4-B67BF09F10BD}</Project>
+      <Name>LetMeRate.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Web.config.dev">
       <SubType>Designer</SubType>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

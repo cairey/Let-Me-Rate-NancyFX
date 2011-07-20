@@ -6,17 +6,11 @@ using Nancy;
 
 namespace LetMeRate.Web.Helpers
 {
-    public static class HttpRequestExtensions
+    public static class HttpRequestBaseExtensions
     {
-        public static HttpRequest HttpRequest(this Request source)
+        public static string BaseUrl(this HttpRequestBase source)
         {
-            return HttpContext.Current.Request;
-        }
-
-
-        public static string BaseUrl(this Request source)
-        {
-            return HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority);
+            return source.Url.GetLeftPart(UriPartial.Authority);
         }
     }
 }

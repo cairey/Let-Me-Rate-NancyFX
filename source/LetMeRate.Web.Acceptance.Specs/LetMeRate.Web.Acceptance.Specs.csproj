@@ -63,6 +63,7 @@
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -153,6 +154,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\LetMeRate.Common\LetMeRate.Common.csproj">
+      <Project>{FA32E03C-1BB2-46E5-89A4-B67BF09F10BD}</Project>
+      <Name>LetMeRate.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LetMeRate.Web\LetMeRate.Web.csproj">
       <Project>{9775047C-ECF9-40F6-98A6-D71FC6DF293F}</Project>
       <Name>LetMeRate.Web</Name>

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using LetMeRate.Common;
 using LetMeRate.Web.Acceptance.Specs.Setup;
 using NUnit.Framework;
 using Nancy;
@@ -44,6 +45,7 @@ namespace LetMeRate.Web.Acceptance.Specs.Steps
             var result = jss.Deserialize<Dictionary<string, object>>(responseString);
 
             Assert.IsNotNull(result["AccountValidationUrl"]);
+            Assert.AreEqual("http://baseurl/Account/Validate", result["AccountValidationUrl"]);
             Assert.AreEqual(HttpStatusCode.OK, _response.StatusCode);
         }
     }

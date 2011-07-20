@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LetMeRate.Application.Specs
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LetMeRate.Common", "LetMeRate.Common\LetMeRate.Common.csproj", "{FA32E03C-1BB2-46E5-89A4-B67BF09F10BD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LetMeRate.Web.Specs", "LetMeRate.Web.Specs\LetMeRate.Web.Specs.csproj", "{1711F58E-EBBB-4C7B-B2C7-3F3FF5FDAC46}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{FA32E03C-1BB2-46E5-89A4-B67BF09F10BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FA32E03C-1BB2-46E5-89A4-B67BF09F10BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FA32E03C-1BB2-46E5-89A4-B67BF09F10BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1711F58E-EBBB-4C7B-B2C7-3F3FF5FDAC46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1711F58E-EBBB-4C7B-B2C7-3F3FF5FDAC46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1711F58E-EBBB-4C7B-B2C7-3F3FF5FDAC46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1711F58E-EBBB-4C7B-B2C7-3F3FF5FDAC46}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -46,5 +52,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{0341E79D-157F-4737-BB1E-72FE0094B7F7} = {8C7CB858-8E46-4B32-ADDB-5A68C020AB62}
 		{6155E882-24BA-4B7D-B92C-355DF8CD4763} = {8C7CB858-8E46-4B32-ADDB-5A68C020AB62}
+		{1711F58E-EBBB-4C7B-B2C7-3F3FF5FDAC46} = {8C7CB858-8E46-4B32-ADDB-5A68C020AB62}
 	EndGlobalSection
 EndGlobal

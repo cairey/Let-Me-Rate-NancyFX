@@ -5,6 +5,7 @@ using System.Web;
 using LetMeRate.Application;
 using LetMeRate.Application.Security;
 using LetMeRate.Application.Services;
+using LetMeRate.Web.Helpers;
 using Nancy;
 using TinyIoC;
 
@@ -19,6 +20,8 @@ namespace LetMeRate.Web
 
             container.Register<IAccountKeyGenerator, AccountKeyGenerator>().AsSingleton();
             container.Register<ISecurityDigest, SecurityDigest>().AsSingleton();
+
+            container.Register<IHttpContextAccessor, HttpContextAccessor>().AsMultiInstance();
         }
     }
 }

@@ -1,6 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Web;
+using LetMeRate.Common;
+using LetMeRate.Web.Helpers;
 using Nancy.Json;
 using Nancy.Testing;
+using NSubstitute;
 using TechTalk.SpecFlow;
 
 namespace LetMeRate.Web.Acceptance.Specs.Setup
@@ -8,6 +13,20 @@ namespace LetMeRate.Web.Acceptance.Specs.Setup
     [Binding]
     public class BeforeScenarios
     {
+        [BeforeScenario]
+        public void GeneralSetup()
+        {
+            var httpContextWrapper = Substitute.For<HttpContextBase>();
+            var httpRequestWrapper = Substitute.For<HttpRequestBase>();
+
+            var baseUrl = new Uri("http://baseurl/fearfactory");
+            httpRequestWrapper.Url.Returns(baseUrl);
+            httpContextWrapper.Request.Returns(httpRequestWrapper);
+            httpContextWrapper.Request.Returns(httpRequestWrapper);
+
+            DirtyNancyTestingHttpContext.Current = httpContextWrapper;
+        }
+
         [BeforeScenario]
         public void CreateUserAccounts()
         {

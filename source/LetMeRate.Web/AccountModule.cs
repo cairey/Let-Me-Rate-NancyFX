@@ -13,11 +13,11 @@ namespace LetMeRate.Web
 {
     public class AccountModule : NancyModule
     {
-        private readonly IAccountService _accountService;
+        private readonly HttpContextBase context;
 
-        public AccountModule(IAccountService accountService)
+        public AccountModule(IAccountService accountService, IHttpContextAccessor httpContextAccessor)
         {
-            _accountService = accountService;
+            this.context = httpContextAccessor.Current;
 
             Get["/"] = x =>
             {
@@ -29,13 +29,14 @@ namespace LetMeRate.Web
                                               var command = new AddUserAccountCommand(Request.Form.EmailAddress,
                                                                                   Request.Form.Password,
                                                                                   uint.Parse(Request.Form.RateOutOf));
-                                              var account = _accountService.CreateAccount(command);
+                                              var account = accountService.CreateAccount(command);
 
-                                              //var accountValidationUrl = Request.BaseUrl() + "/Account/Validate";
+                                              var accountValidationUrl = context.Request.BaseUrl() + "/Account/Validate";
+                                              
                                               return Response.AsJson(new
                                                                          {
-                                                                             AccountKey = account.Key, 
-                                                                             AccountValidationUrl = ""
+                                                                             AccountKey = account.Key,
+                                                                             AccountValidationUrl = accountValidationUrl
                                                                          });
             };
         }
