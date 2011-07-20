@@ -31,7 +31,7 @@ namespace LetMeRate.Web
                                                                                   uint.Parse(Request.Form.RateOutOf));
                                               var account = accountService.CreateAccount(command);
 
-                                              var accountValidationUrl = context.Request.BaseUrl() + "/Account/Validate";
+                                              var accountValidationUrl = context.Request.BaseUrl() + "/Account/Validate/" + account.Key;
                                               
                                               return Response.AsJson(new
                                                                          {

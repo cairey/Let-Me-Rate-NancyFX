@@ -43,9 +43,11 @@ namespace LetMeRate.Web.Acceptance.Specs.Steps
             var responseString = _response.GetBodyAsString();
             var jss = new JavaScriptSerializer();
             var result = jss.Deserialize<Dictionary<string, object>>(responseString);
+            var validationAccountUrl = result["AccountValidationUrl"];
 
-            Assert.IsNotNull(result["AccountValidationUrl"]);
-            Assert.AreEqual("http://baseurl/Account/Validate", result["AccountValidationUrl"]);
+
+            Assert.IsNotNull(validationAccountUrl);
+            Assert.IsTrue(validationAccountUrl.ToString().Contains("http://baseurl/Account/Validate"));
             Assert.AreEqual(HttpStatusCode.OK, _response.StatusCode);
         }
     }
