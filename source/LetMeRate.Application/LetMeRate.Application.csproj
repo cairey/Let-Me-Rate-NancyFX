@@ -53,6 +53,7 @@
     <Compile Include="Commands\AddRatingCommand.cs" />
     <Compile Include="Commands\DeleteRatingCommand.cs" />
     <Compile Include="Commands\UpdateRatingCommand.cs" />
+    <Compile Include="Commands\ValidateAccountCommand.cs" />
     <Compile Include="Query\GetRatingsCustomParamQuery.cs" />
     <Compile Include="Query\GetRatingsBetweenRatingQuery.cs" />
     <Compile Include="Query\GetRatingUniqueKeyQuery.cs" />

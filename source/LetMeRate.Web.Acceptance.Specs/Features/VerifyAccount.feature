@@ -1,11 +1,10 @@
 ﻿Feature: Account validation
 	In order to validate my account
 	As a user of rating
-	I want to be emailed a validation link
+	I want to be sent a validation link
 
-@mytag
+@CreateUserAccounts
 Scenario: Validating account
-	Given I have entered 50 into the calculator
-	And I have entered 70 into the calculator
-	When I press add
-	Then the result should be 120 on the screen
+	Given I am making web request
+	When sending my validation key
+	Then I should see a result that I am validated

@@ -20,9 +20,11 @@ namespace LetMeRate.Web
             this.context = httpContextAccessor.Current;
 
             Get["/"] = x =>
-            {
+                           {
+
                 return "Test Route";
             };
+
 
             Post["/Account/Create"] = x =>
                                           {
@@ -38,6 +40,13 @@ namespace LetMeRate.Web
                                                                              AccountKey = account.Key,
                                                                              AccountValidationUrl = accountValidationUrl
                                                                          });
+            };
+
+            Get["/Account/Validate/{ValidationKey}"] = x =>
+                                                           {
+                                                               var command = new ValidateAccountCommand(x.ValidationKey);
+                                                               accountService.ValidateAccount(command);
+                return "Test Route";
             };
         }
 

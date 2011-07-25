@@ -45,5 +45,10 @@ namespace LetMeRate.Application.Services
             if (userAccount == null) throw new Exception("The user account cannot be found with that key.");
             return userAccount;
         }
+
+        public dynamic ValidateAccount(ValidateAccountCommand command)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

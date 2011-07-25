@@ -31,8 +31,8 @@ namespace LetMeRate.Web.Acceptance.Specs.Features
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Account validation", "In order to validate my account\r\nAs a user of rating\r\nI want to be emailed a vali" +
-                    "dation link", GenerationTargetLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Account validation", "In order to validate my account\r\nAs a user of rating\r\nI want to be sent a validat" +
+                    "ion link", GenerationTargetLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -56,21 +56,19 @@ namespace LetMeRate.Web.Acceptance.Specs.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Validating account")]
-        [NUnit.Framework.CategoryAttribute("mytag")]
+        [NUnit.Framework.CategoryAttribute("CreateUserAccounts")]
         public virtual void ValidatingAccount()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Validating account", new string[] {
-                        "mytag"});
+                        "CreateUserAccounts"});
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line 8
- testRunner.Given("I have entered 50 into the calculator");
+ testRunner.Given("I am making web request");
 #line 9
- testRunner.And("I have entered 70 into the calculator");
+ testRunner.When("sending my validation key");
 #line 10
- testRunner.When("I press add");
-#line 11
- testRunner.Then("the result should be 120 on the screen");
+ testRunner.Then("I should see a result that I am validated");
 #line hidden
             testRunner.CollectScenarioErrors();
         }

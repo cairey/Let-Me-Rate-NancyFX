@@ -7,5 +7,6 @@ namespace LetMeRate.Application.Services
     {
         dynamic CreateAccount(AddUserAccountCommand addUserAccountCommand);
         dynamic GetUserAccountByKey(GetAccountQuery getAccountQuery);
+        dynamic ValidateAccount(ValidateAccountCommand command);
     }
 }
