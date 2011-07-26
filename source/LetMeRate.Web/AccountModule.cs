@@ -11,7 +11,7 @@ using LetMeRate.Web.Helpers;
 
 namespace LetMeRate.Web
 {
-    public class AccountModule : NancyModule
+    public class AccountModule : LetMeRateModule
     {
         private readonly HttpContextBase context;
 
@@ -22,8 +22,8 @@ namespace LetMeRate.Web
             Get["/"] = x =>
                            {
 
-                return "Test Route";
-            };
+                               return "Test Route";
+                           };
 
 
             Post["/Account/Create"] = x =>
@@ -34,20 +34,19 @@ namespace LetMeRate.Web
                                               var account = accountService.CreateAccount(command);
 
                                               var accountValidationUrl = context.Request.BaseUrl() + "/Account/Validate/" + account.Key;
-                                              
+
                                               return Response.AsJson(new
                                                                          {
                                                                              AccountKey = account.Key,
                                                                              AccountValidationUrl = accountValidationUrl
                                                                          });
-            };
+                                          };
 
-            Get["/Account/Validate/{ValidationKey}"] = x =>
+            Post["/Account/Validate"] = x =>
                                                            {
-                                                               var command = new ValidateAccountCommand(x.ValidationKey);
-                                                               accountService.ValidateAccount(command);
-                return "Test Route";
-            };
+                                                               var command = new ValidateAccountCommand(Request.Form.ValidationKey);
+                                                               return Response.AsJson((int)accountService.ValidateAccount(command));
+                                                           };
         }
 
 

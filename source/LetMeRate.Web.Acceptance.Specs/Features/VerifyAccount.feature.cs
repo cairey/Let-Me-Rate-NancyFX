@@ -55,20 +55,43 @@ namespace LetMeRate.Web.Acceptance.Specs.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Validating account")]
+        [NUnit.Framework.DescriptionAttribute("Validating account that is valid")]
         [NUnit.Framework.CategoryAttribute("CreateUserAccounts")]
-        public virtual void ValidatingAccount()
+        [NUnit.Framework.CategoryAttribute("ClearDatabase")]
+        public virtual void ValidatingAccountThatIsValid()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Validating account", new string[] {
-                        "CreateUserAccounts"});
-#line 7
-this.ScenarioSetup(scenarioInfo);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Validating account that is valid", new string[] {
+                        "CreateUserAccounts",
+                        "ClearDatabase"});
 #line 8
- testRunner.Given("I am making web request");
+this.ScenarioSetup(scenarioInfo);
 #line 9
- testRunner.When("sending my validation key");
+ testRunner.Given("I am making web request");
 #line 10
+ testRunner.When("sending my validation key");
+#line 11
  testRunner.Then("I should see a result that I am validated");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Validating account that\'s not valid")]
+        [NUnit.Framework.CategoryAttribute("CreateUserAccounts")]
+        [NUnit.Framework.CategoryAttribute("ClearDatabase")]
+        public virtual void ValidatingAccountThatSNotValid()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Validating account that\'s not valid", new string[] {
+                        "CreateUserAccounts",
+                        "ClearDatabase"});
+#line 16
+this.ScenarioSetup(scenarioInfo);
+#line 17
+testRunner.Given("I am making web request");
+#line 18
+testRunner.When("sending my validation key that is invalid");
+#line 19
+testRunner.Then("I should see a result that I am not validated");
 #line hidden
             testRunner.CollectScenarioErrors();
         }

@@ -10,13 +10,13 @@ using System.Linq;
 
 namespace LetMeRate.Web
 {
-    public class RatingModule : NancyModule
+    public class RatingModule : LetMeRateModule
     {
-        private readonly IRatingService _ratingService;
+        private readonly IRatingService ratingService;
 
         public RatingModule(IRatingService ratingService)
         {
-            _ratingService = ratingService;
+            this.ratingService = ratingService;
 
 
             Get["/"] = x =>
@@ -27,7 +27,7 @@ namespace LetMeRate.Web
             Post["/{Key}/Ratings"] = x =>
                                         {
                                             var command = new AddRatingCommand(Request.Form.UniqueKey, uint.Parse(Request.Form.Rating), Request.Form.CustomParams, new AccountContext(x.Key));
-                                            _ratingService.AddRating(command);
+                                            this.ratingService.AddRating(command);
                                             return Response.AsJson((string)Request.Form.UniqueKey);
                                         };
 
@@ -35,7 +35,7 @@ namespace LetMeRate.Web
             Get["/{Key}/Ratings/Key/{UniqueKey}"] = x =>
             {
                 var query = new GetRatingUniqueKeyQuery(new AccountContext(x.Key), x.UniqueKey);
-                var ratings = _ratingService.GetRatingByUniqueKey(query);
+                var ratings = this.ratingService.GetRatingByUniqueKey(query);
                 return this.AsJsonRatings(ratings);
             };
 
@@ -43,7 +43,7 @@ namespace LetMeRate.Web
             Get["/{Key}/Ratings/All"] = x =>
                                          {
                                              var query = new GetAllRatingsQuery(new AccountContext(x.Key));
-                                             var ratings = _ratingService.GetAllRatings(query);
+                                             var ratings = this.ratingService.GetAllRatings(query);
                                              return this.AsJsonRatings(ratings);
                                          };
 
@@ -55,7 +55,7 @@ namespace LetMeRate.Web
                                                    var queryParam = Request.Query[customParam];
 
                                                    var query = new GetRatingsCustomParamQuery(new AccountContext(x.Key), customParam, queryParam);
-                                                   var ratings = _ratingService.GetRatingsByCustomParam(query);
+                                                   var ratings = this.ratingService.GetRatingsByCustomParam(query);
                                                    return this.AsJsonRatings(ratings);
                                                };
 
@@ -65,7 +65,7 @@ namespace LetMeRate.Web
                                         {
 
                                             var query = new GetRatingsBetweenRatingQuery(new AccountContext(x.Key), Request.Query.minRating, Request.Query.maxRating);
-                                            var ratings = _ratingService.GetRatingsBetweenRating(query);
+                                            var ratings = this.ratingService.GetRatingsBetweenRating(query);
                                             return this.AsJsonRatings(ratings);
                                         };
 
@@ -73,7 +73,7 @@ namespace LetMeRate.Web
             Delete["/{Key}/Ratings/{UniqueKey}"] = x =>
                                                        {
                                                            var command = new DeleteRatingCommand(new AccountContext(x.Key), x.UniqueKey);
-                                                           return Response.AsJson((int)_ratingService.DeleteRating(command));
+                                                           return Response.AsJson((int)this.ratingService.DeleteRating(command));
                                                        };
 
             Put["/{Key}/Ratings/{UniqueKey}"] = x =>
@@ -87,20 +87,13 @@ namespace LetMeRate.Web
                                                             rating = uint.Parse(Request.Form.Rating);
                                                         
                                                         var command = new UpdateRatingCommand(x.UniqueKey, rating, customParams, new AccountContext(x.Key));
-                                                        return Response.AsJson((int)_ratingService.UpdateRating(command));
+                                                        return Response.AsJson((int)this.ratingService.UpdateRating(command));
                                                     };
         }
 
 
 
-        private Response AsJsonRatings(dynamic ratings)
-        {
-            var ratingsList = new List<object>();
-            foreach (var rating in ratings)
-                ratingsList.Add(new { rating.Rating, rating.CustomParams });
 
-            return Response.AsJson(ratingsList);
-        }
 
     }
 }

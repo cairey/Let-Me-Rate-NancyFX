@@ -1,4 +1,12 @@
 USE [LetMeRate]
+GO
+
+/****** Object:  Table [dbo].[UserAccount]    Script Date: 07/26/2011 20:02:53 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
 
 CREATE TABLE [dbo].[UserAccount](
 	[Id] [uniqueidentifier] NOT NULL,
@@ -7,6 +15,7 @@ CREATE TABLE [dbo].[UserAccount](
 	[PasswordSalt] [nvarchar](512) NOT NULL,
 	[Key] [nvarchar](256) NOT NULL,
 	[RateOutOf] [int] NOT NULL,
+	[Enabled] [bit] NOT NULL,
  CONSTRAINT [PK_UserAccount] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
@@ -14,3 +23,8 @@ CREATE TABLE [dbo].[UserAccount](
 ) ON [PRIMARY]
 
 GO
+
+ALTER TABLE [dbo].[UserAccount] ADD  CONSTRAINT [DF_UserAccount_Enabled]  DEFAULT ((0)) FOR [Enabled]
+GO
+
+

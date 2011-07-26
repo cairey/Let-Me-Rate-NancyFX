@@ -78,6 +78,7 @@
     <Compile Include="Helpers\HttpContextAccessor.cs" />
     <Compile Include="Helpers\HttpRequestExtensions.cs" />
     <Compile Include="Helpers\IHttpContextAccessor.cs" />
+    <Compile Include="LetMeRateModule.cs" />
     <Compile Include="RatingModule.cs" />
     <Compile Include="WebBootstrapper.cs" />
     <Compile Include="AccountModule.cs" />

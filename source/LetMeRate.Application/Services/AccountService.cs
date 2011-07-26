@@ -48,7 +48,11 @@ namespace LetMeRate.Application.Services
 
         public dynamic ValidateAccount(ValidateAccountCommand command)
         {
-            throw new NotImplementedException();
+            var db = Database.Open();
+            var userAccount = db.UserAccounts.FindAllByKey(command.ValidationKey).FirstOrDefault();
+            if (userAccount == null) return 0;
+            userAccount.Enabled = true;
+            return db.UserAccounts.Update(userAccount); ;
         }
     }
 }
