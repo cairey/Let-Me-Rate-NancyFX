@@ -12,7 +12,7 @@ namespace LetMeRate.Web
         {
             var ratingsList = new List<object>();
             foreach (var rating in ratings)
-                ratingsList.Add(new { rating.Rating, rating.CustomParams });
+                ratingsList.Add(new { rating.Id, rating.Rating, rating.CustomParams });
 
             return Response.AsJson(ratingsList);
         }

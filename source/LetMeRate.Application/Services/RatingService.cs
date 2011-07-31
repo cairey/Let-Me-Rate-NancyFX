@@ -12,11 +12,11 @@ namespace LetMeRate.Application.Services
 {
     public class RatingService : IRatingService
     {
-        private readonly IAccountService _accountService;
+        private readonly IAccountService accountService;
 
         public RatingService(IAccountService accountService)
         {
-            _accountService = accountService;
+            this.accountService = accountService;
         }
 
         public dynamic AddRating(AddRatingCommand addRatingCommand)
@@ -40,6 +40,25 @@ namespace LetMeRate.Application.Services
             var db = Database.Open();
             var userAccount = GetUserAccount(getAllRatingsQuery.AccountContext.AccountKey);
             return db.Ratings.FindAllByUserAccountId(userAccount.Id);
+        }
+
+        public dynamic GetRatingsAverage(GetRatingsAverageQuery getRatingsAverageQuery)
+        {
+            var db = Database.Open();
+            var userAccount = GetUserAccount(getRatingsAverageQuery.AccountContext.AccountKey);
+            List<dynamic> ratings = db.Ratings.FindAllByUserAccountId(userAccount.Id).ToList();
+            var distinctUniqueKeys = ratings.Select(x => x.UniqueKey).Distinct().ToDictionary(key => key, value => 0);
+            var uniqueKeys = distinctUniqueKeys.Keys.ToList();
+
+            foreach (var uniqueKey in uniqueKeys)
+            {
+                var sumOfRatings = ratings.Where(x => x.UniqueKey == uniqueKey).Sum(x => x.Rating);
+                var totalCount = ratings.Where(x => x.UniqueKey == uniqueKey).Count();
+                var meanAvg = sumOfRatings / totalCount;
+                distinctUniqueKeys[uniqueKey] = meanAvg;
+            }
+
+            return distinctUniqueKeys;
         }
 
         public dynamic GetRatingsBetweenRating(GetRatingsBetweenRatingQuery getRatingsBetweenRatingQuery)
@@ -106,7 +125,7 @@ namespace LetMeRate.Application.Services
 
         private dynamic GetUserAccount(string accountKey)
         {
-            return _accountService.GetUserAccountByKey(new GetAccountQuery(new AccountContext(accountKey)));
+            return accountService.GetUserAccountByKey(new GetAccountQuery(new AccountContext(accountKey)));
         }
     }
 }
