@@ -6,9 +6,9 @@ using LetMeRate.Application.Security;
 
 namespace LetMeRate.Application.Query
 {
-    public class GetRatingsAverageQuery : WithAccountContext
+    public class GetAllRatingsAverageQuery : WithAccountContext
     {
-        public GetRatingsAverageQuery(AccountContext accountContext) : base(accountContext)
+        public GetAllRatingsAverageQuery(AccountContext accountContext) : base(accountContext)
         {
         }
     }

@@ -1,4 +1,5 @@
-﻿using LetMeRate.Application.Commands;
+﻿using System.Collections.Generic;
+using LetMeRate.Application.Commands;
 using LetMeRate.Application.Query;
 
 namespace LetMeRate.Application.Services
@@ -9,9 +10,9 @@ namespace LetMeRate.Application.Services
         dynamic GetAllRatings(GetAllRatingsQuery getAllRatingsQuery);
         dynamic GetRatingsBetweenRating(GetRatingsBetweenRatingQuery getRatingsBetweenRatingQuery);
         dynamic GetRatingsByCustomParam(GetRatingsCustomParamQuery getRatingsCustomParamQuery);
-        dynamic GetRatingByUniqueKey(GetRatingUniqueKeyQuery getRatingUniqueKeyQuery);
+        dynamic GetRatingsByUniqueKey(GetRatingUniqueKeyQuery getRatingUniqueKeyQuery);
         dynamic DeleteRating(DeleteRatingCommand command);
         dynamic UpdateRating(UpdateRatingCommand command);
-        dynamic GetRatingsAverage(GetRatingsAverageQuery getRatingsAverageQuery);
+        IDictionary<string, int> GetAverageRatings(IEnumerable<dynamic> ratings);
     }
 }

@@ -26,7 +26,6 @@ namespace LetMeRate.Application.Services
             if (addRatingCommand.Rating > userAccount.RateOutOf)
                 throw new Exception("You cannot rate higher than the setting set by your account.");
 
-
             var db = Database.Open();
             return db.Ratings.Insert(Id: Guid.NewGuid(),
                                             UserAccountId: userAccount.Id,
@@ -42,23 +41,20 @@ namespace LetMeRate.Application.Services
             return db.Ratings.FindAllByUserAccountId(userAccount.Id);
         }
 
-        public dynamic GetRatingsAverage(GetRatingsAverageQuery getRatingsAverageQuery)
+        public IDictionary<string, int> GetAverageRatings(IEnumerable<dynamic> ratings)
         {
-            var db = Database.Open();
-            var userAccount = GetUserAccount(getRatingsAverageQuery.AccountContext.AccountKey);
-            List<dynamic> ratings = db.Ratings.FindAllByUserAccountId(userAccount.Id).ToList();
-            var distinctUniqueKeys = ratings.Select(x => x.UniqueKey).Distinct().ToDictionary(key => key, value => 0);
-            var uniqueKeys = distinctUniqueKeys.Keys.ToList();
+            var distinctAverageRatings = ratings.Select(x => x.UniqueKey).Distinct().ToDictionary(key => (string)key, value => 0);
+            var uniqueKeys = distinctAverageRatings.Keys.ToList();
 
             foreach (var uniqueKey in uniqueKeys)
             {
                 var sumOfRatings = ratings.Where(x => x.UniqueKey == uniqueKey).Sum(x => x.Rating);
                 var totalCount = ratings.Where(x => x.UniqueKey == uniqueKey).Count();
                 var meanAvg = sumOfRatings / totalCount;
-                distinctUniqueKeys[uniqueKey] = meanAvg;
+                distinctAverageRatings[uniqueKey] = meanAvg;
             }
 
-            return distinctUniqueKeys;
+            return distinctAverageRatings;
         }
 
         public dynamic GetRatingsBetweenRating(GetRatingsBetweenRatingQuery getRatingsBetweenRatingQuery)
@@ -78,11 +74,10 @@ namespace LetMeRate.Application.Services
             var userAccount = GetUserAccount(getRatingsCustomParamQuery.AccountContext.AccountKey);
             var like = "%" + getRatingsCustomParamQuery.CustomParam + "[\"''][:][ ][\"'']" + getRatingsCustomParamQuery.CustomQuery + "%";
 
-            return db.Ratings.FindAll(db.Ratings.CustomParams.Like(like)
-                                        && db.Ratings.UserAccountId == userAccount.Id);
+            return db.Ratings.FindAll(db.Ratings.CustomParams.Like(like) && db.Ratings.UserAccountId == userAccount.Id);
         }
 
-        public dynamic GetRatingByUniqueKey(GetRatingUniqueKeyQuery getRatingUniqueKeyQuery)
+        public dynamic GetRatingsByUniqueKey(GetRatingUniqueKeyQuery getRatingUniqueKeyQuery)
         {
             var db = Database.Open();
             var userAccount = GetUserAccount(getRatingUniqueKeyQuery.AccountContext.AccountKey);
@@ -126,6 +121,21 @@ namespace LetMeRate.Application.Services
         private dynamic GetUserAccount(string accountKey)
         {
             return accountService.GetUserAccountByKey(new GetAccountQuery(new AccountContext(accountKey)));
+        }
+    }
+
+    public class GetRatingAverageQuery : WithAccountContext
+    {
+        private readonly string uniqueKey;
+
+        public GetRatingAverageQuery(AccountContext accountContext, string uniqueKey) : base(accountContext)
+        {
+            this.uniqueKey = uniqueKey;
+        }
+
+        public string UniqueKey
+        {
+            get { return uniqueKey; }
         }
     }
 }

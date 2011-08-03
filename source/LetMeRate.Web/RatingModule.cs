@@ -35,16 +35,18 @@ namespace LetMeRate.Web
             Get["/{Key}/Ratings/Key/{UniqueKey}"] = x =>
             {
                 var query = new GetRatingUniqueKeyQuery(new AccountContext(x.Key), x.UniqueKey);
-                var ratings = this.ratingService.GetRatingByUniqueKey(query);
-                return this.AsJsonRatings(ratings);
+                var ratings = ratingService.GetRatingsByUniqueKey(query);
+                var ratingAverages = ratingService.GetAverageRatings(ratings.ToList());
+                return this.AsJsonRatings(ratings, ratingAverages);
             };
 
 
             Get["/{Key}/Ratings/All"] = x =>
                                          {
                                              var query = new GetAllRatingsQuery(new AccountContext(x.Key));
-                                             var ratings = this.ratingService.GetAllRatings(query);
-                                             return this.AsJsonRatings(ratings);
+                                             var ratings = ratingService.GetAllRatings(query);
+                                             var ratingAverages = ratingService.GetAverageRatings(ratings.ToList());
+                                             return this.AsJsonRatings(ratings, ratingAverages);
                                          };
 
 
@@ -55,8 +57,9 @@ namespace LetMeRate.Web
                                                    var queryParam = Request.Query[customParam];
 
                                                    var query = new GetRatingsCustomParamQuery(new AccountContext(x.Key), customParam, queryParam);
-                                                   var ratings = this.ratingService.GetRatingsByCustomParam(query);
-                                                   return this.AsJsonRatings(ratings);
+                                                   var ratings = ratingService.GetRatingsByCustomParam(query);
+                                                   var ratingAverages = ratingService.GetAverageRatings(ratings.ToList());
+                                                   return this.AsJsonRatings(ratings, ratingAverages);
                                                };
 
 
@@ -66,7 +69,8 @@ namespace LetMeRate.Web
 
                                             var query = new GetRatingsBetweenRatingQuery(new AccountContext(x.Key), Request.Query.minRating, Request.Query.maxRating);
                                             var ratings = this.ratingService.GetRatingsBetweenRating(query);
-                                            return this.AsJsonRatings(ratings);
+                                            var ratingAverages = ratingService.GetAverageRatings(ratings.ToList());
+                                            return this.AsJsonRatings(ratings, ratingAverages);
                                         };
 
 

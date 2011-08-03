@@ -112,6 +112,24 @@ namespace LetMeRate.Web.Acceptance.Specs.Setup
             });
 
 
+            browser.Post(string.Format("/{0}/Ratings", FeatureContext.Current["AccountKey2"]), with =>
+            {
+                with.HttpRequest();
+                with.FormValue("Rating", "2");
+                with.FormValue("UniqueKey", "3");
+                with.FormValue("CustomParams", "{ \"UserId\": \"1245444\" }");
+            });
+
+
+            browser.Post(string.Format("/{0}/Ratings", FeatureContext.Current["AccountKey2"]), with =>
+            {
+                with.HttpRequest();
+                with.FormValue("Rating", "10");
+                with.FormValue("UniqueKey", "3");
+                with.FormValue("CustomParams", "{ \"UserId\": \"65656756\" }");
+            });
+
+
             // 4
             browser.Post(string.Format("/{0}/Ratings", FeatureContext.Current["AccountKey3"]), with =>
             {

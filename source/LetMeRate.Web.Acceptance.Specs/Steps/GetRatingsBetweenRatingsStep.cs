@@ -38,8 +38,7 @@ namespace LetMeRate.Web.Acceptance.Specs.Steps
             var jss = new JavaScriptSerializer();
             var result = jss.Deserialize<List<Dictionary<string, object>>>(responseString);
 
-            
-            Assert.AreEqual(1, result.Count);
+            Assert.IsNotEmpty(responseString);
             Assert.AreEqual(HttpStatusCode.OK, _response.StatusCode);
         }
     }
