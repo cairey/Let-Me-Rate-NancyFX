@@ -46,7 +46,7 @@ namespace LetMeRate.Application.Services
             var distinctAverageRatings = ratings.Select(x => x.UniqueKey).Distinct().ToDictionary(key => (string)key, value => 0);
             var uniqueKeys = distinctAverageRatings.Keys.ToList();
 
-            foreach (var uniqueKey in uniqueKeys)
+            foreach(var uniqueKey in uniqueKeys)
             {
                 var sumOfRatings = ratings.Where(x => x.UniqueKey == uniqueKey).Sum(x => x.Rating);
                 var totalCount = ratings.Where(x => x.UniqueKey == uniqueKey).Count();
@@ -93,10 +93,13 @@ namespace LetMeRate.Application.Services
             var ratings = db.ratings.FindAll(db.Ratings.UniqueKey == command.UniqueKey
                                     && db.Ratings.UserAccountId == userAccount.Id);
 
-            var rating = ratings.FirstOrDefault();
-            if (rating == null) return 0;
+            if (!ratings.Any())
+                return 0;
 
-            return db.Ratings.DeleteById(rating.Id);
+            foreach(var rating in ratings)
+                db.Ratings.DeleteById(rating.Id);
+
+            return 1;
         }
 
         public dynamic UpdateRating(UpdateRatingCommand command)
