@@ -82,6 +82,8 @@ namespace LetMeRate.Web
 
             Put["/{Key}/Ratings/{UniqueKey}"] = x =>
                                                     {
+                                                        return null; // TODO:need to update a rating by ID
+
                                                         string customParams = null;
                                                         if(Request.Form.CustomParams.HasValue)
                                                             customParams = Request.Form.CustomParams;

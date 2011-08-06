@@ -102,6 +102,7 @@ namespace LetMeRate.Application.Services
             return 1;
         }
 
+        [Obsolete]
         public dynamic UpdateRating(UpdateRatingCommand command)
         {
             var db = Database.Open();
