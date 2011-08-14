@@ -6,11 +6,11 @@ namespace LetMeRate.Application.Services
 {
     public interface IRatingService
     {
-        dynamic AddRating(AddRatingCommand addRatingCommand);
-        dynamic GetAllRatings(GetAllRatingsQuery getAllRatingsQuery);
-        dynamic GetRatingsBetweenRating(GetRatingsBetweenRatingQuery getRatingsBetweenRatingQuery);
-        dynamic GetRatingsByCustomParam(GetRatingsCustomParamQuery getRatingsCustomParamQuery);
-        dynamic GetRatingsByUniqueKey(GetRatingUniqueKeyQuery getRatingUniqueKeyQuery);
+        dynamic AddRating(AddRatingCommand command);
+        dynamic GetAllRatings(GetAllRatingsQuery query);
+        dynamic GetRatingsBetweenRating(GetRatingsBetweenRatingQuery query);
+        dynamic GetRatingsByCustomParam(GetRatingsCustomParamQuery query);
+        dynamic GetRatingsByUniqueKey(GetRatingUniqueKeyQuery query);
         dynamic DeleteRating(DeleteRatingCommand command);
         dynamic UpdateRating(UpdateRatingCommand command);
         IDictionary<string, int> GetAverageRatings(IEnumerable<dynamic> ratings);
