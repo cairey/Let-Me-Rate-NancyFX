@@ -80,6 +80,11 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
+    <Compile Include="Features\Authorisation.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Authorisation.feature</DependentUpon>
+    </Compile>
     <Compile Include="Features\DeleteRating.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -90,11 +95,6 @@
       <SubType>Code</SubType>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-    </Compile>
-    <Compile Include="Features\UpdateRating.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>UpdateRating.feature</DependentUpon>
     </Compile>
     <Compile Include="Features\VerifyAccount.feature.cs">
       <AutoGen>True</AutoGen>
@@ -108,6 +108,7 @@
     <Compile Include="Steps\AddRatingStep.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Steps\AuthorisationStep.cs" />
     <Compile Include="Steps\DeleteRatingStep.cs" />
     <Compile Include="Steps\GetRatingsBetweenRatingsStep.cs" />
     <Compile Include="Steps\GetAllRatingsStep.cs">
@@ -115,7 +116,6 @@
     </Compile>
     <Compile Include="Steps\GetRatingsCustomParamSteps.cs" />
     <Compile Include="Steps\GetRatingsUniqueKeyStep.cs" />
-    <Compile Include="Steps\UpdateRatingStep.cs" />
     <Compile Include="Steps\VerifyAccountStep.cs" />
     <Compile Include="TestWebBootstrapper.cs" />
     <Compile Include="Features\CreateAccount.feature.cs">
@@ -132,6 +132,10 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>AddRating.feature.cs</LastGenOutput>
     </None>
+    <None Include="Features\Authorisation.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>Authorisation.feature.cs</LastGenOutput>
+    </None>
     <None Include="Features\CreateAccount.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CreateAccount.feature.cs</LastGenOutput>
@@ -143,10 +147,6 @@
     <None Include="Features\GetRatings.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>GetRatings.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Features\UpdateRating.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>UpdateRating.feature.cs</LastGenOutput>
     </None>
     <None Include="Features\VerifyAccount.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

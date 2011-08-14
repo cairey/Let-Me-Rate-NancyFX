@@ -15,6 +15,7 @@ namespace LetMeRate.Web.Acceptance.Specs.Steps
     {
         private BrowserResponse _response;
 
+        [Ignore]
         [When(@"I update my rating that exists")]
         public void WhenIUpdateMyRatingThatExists()
         {
@@ -29,6 +30,7 @@ namespace LetMeRate.Web.Acceptance.Specs.Steps
             });
         }
 
+        [Ignore]
         [Then(@"my rating should be updated")]
         public void ThenMyRatingShouldBeUpdated()
         {
@@ -36,7 +38,7 @@ namespace LetMeRate.Web.Acceptance.Specs.Steps
             Assert.AreEqual(HttpStatusCode.OK, _response.StatusCode);
         }
 
-
+        [Ignore]
         [When(@"I update my rating that does not exists")]
         public void WhenIUpdateMyRatingThatDoesNotExists()
         {
@@ -51,7 +53,7 @@ namespace LetMeRate.Web.Acceptance.Specs.Steps
             });
         }
 
-
+        [Ignore]
         [Then(@"my rating should not be updated")]
         public void ThenMyRatingShouldNotBeUpdated()
         {

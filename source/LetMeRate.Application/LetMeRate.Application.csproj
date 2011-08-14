@@ -51,24 +51,29 @@
   <ItemGroup>
     <Compile Include="Commands\AddUserAccountCommand.cs" />
     <Compile Include="Commands\AddRatingCommand.cs" />
+    <Compile Include="Commands\AuthorisationCredentialsCommand.cs" />
     <Compile Include="Commands\DeleteRatingCommand.cs" />
     <Compile Include="Commands\UpdateRatingCommand.cs" />
     <Compile Include="Commands\ValidateAccountCommand.cs" />
     <Compile Include="Query\GetAllRatingsAverageQuery.cs" />
+    <Compile Include="Query\GetRatingAverageQuery.cs" />
     <Compile Include="Query\GetRatingsCustomParamQuery.cs" />
     <Compile Include="Query\GetRatingsBetweenRatingQuery.cs" />
     <Compile Include="Query\GetRatingUniqueKeyQuery.cs" />
+    <Compile Include="Security\AuthorisationToken.cs" />
     <Compile Include="Security\WithAccountContext.cs" />
     <Compile Include="Query\GetAccountQuery.cs" />
     <Compile Include="Query\GetAllRatingsQuery.cs" />
     <Compile Include="Security\AccountContext.cs" />
     <Compile Include="Services\AccountService.cs" />
     <Compile Include="Security\IAccountKeyGenerator.cs" />
+    <Compile Include="Services\AuthorisationService.cs" />
     <Compile Include="Services\IAccountService.cs" />
     <Compile Include="Security\AccountKeyGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\ISecurityDigest.cs" />
     <Compile Include="Security\SecurityDigest.cs" />
+    <Compile Include="Services\IAuthorsationService.cs" />
     <Compile Include="Services\IRatingService.cs" />
     <Compile Include="Services\RatingService.cs" />
   </ItemGroup>

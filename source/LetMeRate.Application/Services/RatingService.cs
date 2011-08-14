@@ -127,19 +127,4 @@ namespace LetMeRate.Application.Services
             return accountService.GetUserAccountByKey(new GetAccountQuery(new AccountContext(accountKey)));
         }
     }
-
-    public class GetRatingAverageQuery : WithAccountContext
-    {
-        private readonly string uniqueKey;
-
-        public GetRatingAverageQuery(AccountContext accountContext, string uniqueKey) : base(accountContext)
-        {
-            this.uniqueKey = uniqueKey;
-        }
-
-        public string UniqueKey
-        {
-            get { return uniqueKey; }
-        }
-    }
 }

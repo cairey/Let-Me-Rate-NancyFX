@@ -75,6 +75,7 @@
     <Reference Include="System.Web.ApplicationServices" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AuthorisationModule.cs" />
     <Compile Include="Helpers\HttpContextAccessor.cs" />
     <Compile Include="Helpers\HttpRequestExtensions.cs" />
     <Compile Include="Helpers\IHttpContextAccessor.cs" />

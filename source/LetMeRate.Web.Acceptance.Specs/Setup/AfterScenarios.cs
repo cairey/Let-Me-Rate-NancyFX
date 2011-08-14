@@ -18,7 +18,8 @@ namespace LetMeRate.Web.Acceptance.Specs.Setup
                 cn.Open();
                 using (var cmd = cn.CreateCommand())
                 {
-                    cmd.CommandText = @"DELETE Rating;
+                    cmd.CommandText = @"DELETE Authorisation;
+                                        DELETE Rating;
                                         DELETE UserAccount;";
                     cmd.CommandType = CommandType.Text;
                     cmd.ExecuteNonQuery();

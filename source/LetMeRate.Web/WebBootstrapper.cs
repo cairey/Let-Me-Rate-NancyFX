@@ -15,9 +15,12 @@ namespace LetMeRate.Web
     {
         protected override void ConfigureApplicationContainer(TinyIoCContainer container)
         {
+            // Services
             container.Register<IAccountService, AccountService>().AsSingleton();
+            container.Register<IAuthorisationService, AuthorisationService>().AsSingleton();
             container.Register<IRatingService, RatingService>().AsSingleton();
 
+            // Others
             container.Register<IAccountKeyGenerator, AccountKeyGenerator>().AsSingleton();
             container.Register<ISecurityDigest, SecurityDigest>().AsSingleton();
 
