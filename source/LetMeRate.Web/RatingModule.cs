@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Web;
 using LetMeRate.Application.Commands;
 using LetMeRate.Application.Query;
 using LetMeRate.Application.Security;
 using LetMeRate.Application.Services;
+using LetMeRate.Web.Helpers;
 using Nancy;
 using System.Linq;
 
@@ -14,49 +16,53 @@ namespace LetMeRate.Web
     {
         private readonly IRatingService ratingService;
 
-        public RatingModule(IRatingService ratingService)
+        public RatingModule(IRatingService ratingService, IHttpContextAccessor httpContextAccessor)
         {
             this.ratingService = ratingService;
 
 
             Get["/"] = x =>
-            {
+                           {
                 return "Test Route";
             };
 
-            Post["/{Key}/Ratings"] = x =>
-                                        {
-                                            var command = new AddRatingCommand(Request.Form.UniqueKey, uint.Parse(Request.Form.Rating), Request.Form.CustomParams, new AccountContext(x.Key));
+            Post["/{TokenKey}/Ratings"] = x =>
+                                         {
+                                            var ipAddress = IPAddress.Parse(httpContextAccessor.Current.Request.UserHostAddress);
+                                            var command = new AddRatingCommand(Request.Form.UniqueKey, uint.Parse(Request.Form.Rating), Request.Form.CustomParams, new AuthorisationContext(x.TokenKey, ipAddress));
                                             this.ratingService.AddRating(command);
                                             return Response.AsJson((string)Request.Form.UniqueKey);
                                         };
 
             
-            Get["/{Key}/Ratings/Key/{UniqueKey}"] = x =>
+            Get["/{TokenKey}/Ratings/Key/{UniqueKey}"] = x =>
             {
-                var query = new GetRatingUniqueKeyQuery(new AccountContext(x.Key), x.UniqueKey);
+                var ipAddress = IPAddress.Parse(httpContextAccessor.Current.Request.UserHostAddress);
+                var query = new GetRatingUniqueKeyQuery(new AuthorisationContext(x.TokenKey, ipAddress), x.UniqueKey);
                 var ratings = ratingService.GetRatingsByUniqueKey(query);
                 var ratingAverages = ratingService.GetAverageRatings(ratings.ToList());
                 return this.AsJsonRatings(ratings, ratingAverages);
             };
 
 
-            Get["/{Key}/Ratings/All"] = x =>
+            Get["/{TokenKey}/Ratings/All"] = x =>
                                          {
-                                             var query = new GetAllRatingsQuery(new AccountContext(x.Key));
+                                             var ipAddress = IPAddress.Parse(httpContextAccessor.Current.Request.UserHostAddress);
+                                             var query = new GetAllRatingsQuery(new AuthorisationContext(x.TokenKey, ipAddress));
                                              var ratings = ratingService.GetAllRatings(query);
                                              var ratingAverages = ratingService.GetAverageRatings(ratings.ToList());
                                              return this.AsJsonRatings(ratings, ratingAverages);
                                          };
 
 
-            Get["/{Key}/Ratings/Custom"] = x =>
+            Get["/{TokenKey}/Ratings/Custom"] = x =>
                                                {
+                                                   var ipAddress = IPAddress.Parse(httpContextAccessor.Current.Request.UserHostAddress);
                                                    Dictionary<string, object>.KeyCollection keys = Request.Query.GetDynamicMemberNames();
                                                    var customParam = keys.First();
                                                    var queryParam = Request.Query[customParam];
 
-                                                   var query = new GetRatingsCustomParamQuery(new AccountContext(x.Key), customParam, queryParam);
+                                                   var query = new GetRatingsCustomParamQuery(new AuthorisationContext(x.TokenKey, ipAddress), customParam, queryParam);
                                                    var ratings = ratingService.GetRatingsByCustomParam(query);
                                                    var ratingAverages = ratingService.GetAverageRatings(ratings.ToList());
                                                    return this.AsJsonRatings(ratings, ratingAverages);
@@ -64,19 +70,20 @@ namespace LetMeRate.Web
 
 
 
-            Get["/{Key}/Ratings/Between/Rating"] = x =>
+            Get["/{TokenKey}/Ratings/Between/Rating"] = x =>
                                         {
-
-                                            var query = new GetRatingsBetweenRatingQuery(new AccountContext(x.Key), Request.Query.minRating, Request.Query.maxRating);
+                                            var ipAddress = IPAddress.Parse(httpContextAccessor.Current.Request.UserHostAddress);
+                                            var query = new GetRatingsBetweenRatingQuery(new AuthorisationContext(x.TokenKey, ipAddress), Request.Query.minRating, Request.Query.maxRating);
                                             var ratings = this.ratingService.GetRatingsBetweenRating(query);
                                             var ratingAverages = ratingService.GetAverageRatings(ratings.ToList());
                                             return this.AsJsonRatings(ratings, ratingAverages);
                                         };
 
 
-            Delete["/{Key}/Ratings/{UniqueKey}"] = x =>
+            Delete["/{TokenKey}/Ratings/{UniqueKey}"] = x =>
                                                        {
-                                                           var command = new DeleteRatingCommand(new AccountContext(x.Key), x.UniqueKey);
+                                                           var ipAddress = IPAddress.Parse(httpContextAccessor.Current.Request.UserHostAddress);
+                                                           var command = new DeleteRatingCommand(new AuthorisationContext(x.TokenKey, ipAddress), x.UniqueKey);
                                                            return Response.AsJson((int)this.ratingService.DeleteRating(command));
                                                        };
 

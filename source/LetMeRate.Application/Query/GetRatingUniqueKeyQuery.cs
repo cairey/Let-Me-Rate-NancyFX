@@ -6,18 +6,19 @@ using LetMeRate.Application.Security;
 
 namespace LetMeRate.Application.Query
 {
-    public class GetRatingUniqueKeyQuery : WithAccountContext
+    public class GetRatingUniqueKeyQuery : WithAuthorisationContext
     {
-        private readonly string _uniqueKey;
+        private readonly string uniqueKey;
 
-        public GetRatingUniqueKeyQuery(AccountContext accountContext, string uniqueKey) : base(accountContext)
+        public GetRatingUniqueKeyQuery(AuthorisationContext authorisationContext, string uniqueKey)
+            : base(authorisationContext)
         {
-            _uniqueKey = uniqueKey;
+            this.uniqueKey = uniqueKey;
         }
 
         public string UniqueKey
         {
-            get { return _uniqueKey; }
+            get { return uniqueKey; }
         }
     }
 }

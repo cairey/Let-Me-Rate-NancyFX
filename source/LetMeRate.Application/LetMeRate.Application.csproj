@@ -60,11 +60,15 @@
     <Compile Include="Query\GetRatingsCustomParamQuery.cs" />
     <Compile Include="Query\GetRatingsBetweenRatingQuery.cs" />
     <Compile Include="Query\GetRatingUniqueKeyQuery.cs" />
+    <Compile Include="Query\GetAuthorisationQuery.cs" />
+    <Compile Include="Query\GetUserAccountQuery.cs" />
+    <Compile Include="Security\AuthorisationContext.cs" />
     <Compile Include="Security\AuthorisationToken.cs" />
     <Compile Include="Security\WithAccountContext.cs" />
-    <Compile Include="Query\GetAccountQuery.cs" />
+    <Compile Include="Query\GetUserAccountByKeyQuery.cs" />
     <Compile Include="Query\GetAllRatingsQuery.cs" />
     <Compile Include="Security\AccountContext.cs" />
+    <Compile Include="Security\WithAuthorisationContext.cs" />
     <Compile Include="Services\AccountService.cs" />
     <Compile Include="Security\IAccountKeyGenerator.cs" />
     <Compile Include="Services\AuthorisationService.cs" />

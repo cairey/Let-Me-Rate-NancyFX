@@ -1,6 +1,8 @@
-﻿using LetMeRate.Web.Acceptance.Specs.Setup;
+﻿using System.Collections.Generic;
+using LetMeRate.Web.Acceptance.Specs.Setup;
 using NUnit.Framework;
 using Nancy;
+using Nancy.Json;
 using Nancy.Testing;
 using TechTalk.SpecFlow;
 
@@ -16,9 +18,20 @@ namespace LetMeRate.Web.Acceptance.Specs.Steps
         public void WhenAddingARatingForMyAccount()
         {
             var accountKey = FeatureContext.Current["AccountKey"];
+            var response = Browser.Post(string.Format("/{0}/Authorisation", accountKey), with =>
+            {
+                with.HttpRequest();
+                with.FormValue("IPAddress", "192.168.129.189");
+            });
+
+            var responseString = response.GetBodyAsString();
+            var jss = new JavaScriptSerializer();
+            var result = jss.Deserialize<Dictionary<string, object>>(responseString);
+            var tokenKey = result["TokenKey"];
+
             uniqueKey = 1;
 
-            _response = Browser.Post(string.Format("/{0}/Ratings", accountKey), with =>
+            _response = Browser.Post(string.Format("/{0}/Ratings", tokenKey), with =>
             {
                 with.HttpRequest();
                 with.FormValue("Rating", "10");

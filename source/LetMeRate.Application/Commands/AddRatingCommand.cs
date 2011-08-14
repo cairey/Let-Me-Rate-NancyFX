@@ -2,34 +2,34 @@
 
 namespace LetMeRate.Application.Commands
 {
-    public class AddRatingCommand : WithAccountContext
+    public class AddRatingCommand : WithAuthorisationContext
     {
-        private readonly string _uniqueKey;
-        private readonly uint _rating;
-        private readonly string _customParams;
+        private readonly string uniqueKey;
+        private readonly uint rating;
+        private readonly string customParams;
 
-        public AddRatingCommand(string uniqueKey, uint rating, string customParams, AccountContext accountContext)
-            : base(accountContext)
+        public AddRatingCommand(string uniqueKey, uint rating, string customParams, AuthorisationContext authorisationContext)
+            : base(authorisationContext)
         {
-            _uniqueKey = uniqueKey;
-            _rating = rating;
-            _customParams = customParams;
+            this.uniqueKey = uniqueKey;
+            this.rating = rating;
+            this.customParams = customParams;
         }
 
 
         public string UniqueKey
         {
-            get { return _uniqueKey; }
+            get { return uniqueKey; }
         }
 
         public string CustomParams
         {
-            get { return _customParams; }
+            get { return customParams; }
         }
 
         public uint Rating
         {
-            get { return _rating; }
+            get { return rating; }
         }
     }
 }

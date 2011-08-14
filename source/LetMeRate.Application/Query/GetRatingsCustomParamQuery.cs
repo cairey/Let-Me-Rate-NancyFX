@@ -6,25 +6,26 @@ using LetMeRate.Application.Security;
 
 namespace LetMeRate.Application.Query
 {
-    public class GetRatingsCustomParamQuery : WithAccountContext
+    public class GetRatingsCustomParamQuery : WithAuthorisationContext
     {
-        private readonly string _customParam;
-        private readonly string _customQuery;
+        private readonly string customParam;
+        private readonly string customQuery;
 
-        public GetRatingsCustomParamQuery(AccountContext accountContext, string customParam, string customQuery) : base(accountContext)
+        public GetRatingsCustomParamQuery(AuthorisationContext authorisationContext, string customParam, string customQuery)
+            : base(authorisationContext)
         {
-            _customParam = customParam;
-            _customQuery = customQuery;
+            this.customParam = customParam;
+            this.customQuery = customQuery;
         }
 
         public string CustomQuery
         {
-            get { return _customQuery; }
+            get { return customQuery; }
         }
 
         public string CustomParam
         {
-            get { return _customParam; }
+            get { return customParam; }
         }
     }
 }

@@ -5,6 +5,7 @@ using System.Text;
 using LetMeRate.Web.Acceptance.Specs.Setup;
 using NUnit.Framework;
 using Nancy;
+using Nancy.Json;
 using Nancy.Testing;
 using TechTalk.SpecFlow;
 
@@ -19,9 +20,19 @@ namespace LetMeRate.Web.Acceptance.Specs.Steps
         public void WhenIDeleteARatingWithAKnownUniqueKey()
         {
             var accountKey = FeatureContext.Current["AccountKey2"];
+            var response = Browser.Post(string.Format("/{0}/Authorisation", accountKey), with =>
+            {
+                with.HttpRequest();
+                with.FormValue("IPAddress", "192.168.129.189");
+            });
+
+            var responseString = response.GetBodyAsString();
+            var jss = new JavaScriptSerializer();
+            var result = jss.Deserialize<Dictionary<string, object>>(responseString);
+            var tokenKey = result["TokenKey"];
             var uniqueKey = 3;
 
-            _response = Browser.Delete(string.Format("/{0}/Ratings/{1}", accountKey, uniqueKey), with =>
+            _response = Browser.Delete(string.Format("/{0}/Ratings/{1}", tokenKey, uniqueKey), with =>
             {
                 with.HttpRequest();
                 with.FormValue("Rating", "10");
@@ -34,9 +45,19 @@ namespace LetMeRate.Web.Acceptance.Specs.Steps
         public void WhenIDeleteARatingThatDoesNotExist()
         {
             var accountKey = FeatureContext.Current["AccountKey2"];
+            var response = Browser.Post(string.Format("/{0}/Authorisation", accountKey), with =>
+            {
+                with.HttpRequest();
+                with.FormValue("IPAddress", "192.168.129.189");
+            });
+
+            var responseString = response.GetBodyAsString();
+            var jss = new JavaScriptSerializer();
+            var result = jss.Deserialize<Dictionary<string, object>>(responseString);
+            var tokenKey = result["TokenKey"];
             var uniqueKey = 9;
 
-            _response = Browser.Delete(string.Format("/{0}/Ratings/{1}", accountKey, uniqueKey), with =>
+            _response = Browser.Delete(string.Format("/{0}/Ratings/{1}", tokenKey, uniqueKey), with =>
             {
                 with.HttpRequest();
                 with.FormValue("Rating", "10");

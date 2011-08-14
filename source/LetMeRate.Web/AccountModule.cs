@@ -19,13 +19,6 @@ namespace LetMeRate.Web
         {
             this.context = httpContextAccessor.Current;
 
-            Get["/"] = x =>
-                           {
-
-                               return "Test Route";
-                           };
-
-
             Post["/Account/Create"] = x =>
                                           {
                                               var command = new AddUserAccountCommand(Request.Form.EmailAddress,

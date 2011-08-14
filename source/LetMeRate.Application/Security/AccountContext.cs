@@ -7,17 +7,17 @@ namespace LetMeRate.Application.Security
 {
     public class AccountContext
     {
-        private readonly string _accountKey;
+        private readonly string accountKey;
 
         public AccountContext(string accountKey)
         {
-            _accountKey = accountKey;
+            this.accountKey = accountKey;
             if (string.IsNullOrWhiteSpace(accountKey)) throw new ArgumentException("The account key is not valid.", "accountKey");
         }
 
         public string AccountKey
         {
-            get { return _accountKey; }
+            get { return accountKey; }
         }
     }
 }

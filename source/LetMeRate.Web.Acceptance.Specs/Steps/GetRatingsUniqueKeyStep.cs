@@ -21,9 +21,19 @@ namespace LetMeRate.Web.Acceptance.Specs.Steps
         public void WhenGettingRatingsForMyAccountAndUniqueKey()
         {
             var accountKey = FeatureContext.Current["AccountKey"];
+            var response = Browser.Post(string.Format("/{0}/Authorisation", accountKey), with =>
+            {
+                with.HttpRequest();
+                with.FormValue("IPAddress", "192.168.129.189");
+            });
+
+            var responseString = response.GetBodyAsString();
+            var jss = new JavaScriptSerializer();
+            var result = jss.Deserialize<Dictionary<string, object>>(responseString);
+            var tokenKey = result["TokenKey"];
             _uniqueKey = 1;
 
-            _response = Browser.Get(string.Format("/{0}/Ratings/Key/{1}", accountKey, _uniqueKey), with =>
+            _response = Browser.Get(string.Format("/{0}/Ratings/Key/{1}", tokenKey, _uniqueKey), with =>
             {
                 with.HttpRequest();
             }); 

@@ -6,25 +6,19 @@ using LetMeRate.Application.Security;
 
 namespace LetMeRate.Application.Commands
 {
-    public class DeleteRatingCommand
+    public class DeleteRatingCommand : WithAuthorisationContext
     {
-        private readonly AccountContext _accountContext;
-        private readonly string _uniqueKey;
+        private readonly string uniqueKey;
 
-        public DeleteRatingCommand(AccountContext accountContext, string uniqueKey)
+        public DeleteRatingCommand(AuthorisationContext authorisationContext, string uniqueKey)
+            : base(authorisationContext)
         {
-            _accountContext = accountContext;
-            _uniqueKey = uniqueKey;
+            this.uniqueKey = uniqueKey;
         }
 
         public string UniqueKey
         {
-            get { return _uniqueKey; }
-        }
-
-        public AccountContext AccountContext
-        {
-            get { return _accountContext; }
+            get { return uniqueKey; }
         }
     }
 }

@@ -6,9 +6,10 @@ using LetMeRate.Application.Security;
 
 namespace LetMeRate.Application.Query
 {
-    public class GetAllRatingsQuery : WithAccountContext
+    public class GetAllRatingsQuery : WithAuthorisationContext
     {
-        public GetAllRatingsQuery(AccountContext accountContext) : base(accountContext)
+        public GetAllRatingsQuery(AuthorisationContext authorisationContext)
+            : base(authorisationContext)
         {
         }
     }

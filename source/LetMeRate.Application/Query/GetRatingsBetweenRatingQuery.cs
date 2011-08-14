@@ -6,25 +6,26 @@ using LetMeRate.Application.Security;
 
 namespace LetMeRate.Application.Query
 {
-    public class GetRatingsBetweenRatingQuery : WithAccountContext
+    public class GetRatingsBetweenRatingQuery : WithAuthorisationContext
     {
-        private readonly int _minRating;
-        private readonly int _maxRating;
+        private readonly int minRating;
+        private readonly int maxRating;
 
-        public GetRatingsBetweenRatingQuery(AccountContext accountContext, int minRating, int maxRating) : base(accountContext)
+        public GetRatingsBetweenRatingQuery(AuthorisationContext authorisationContext, int minRating, int maxRating)
+            : base(authorisationContext)
         {
-            _minRating = minRating;
-            _maxRating = maxRating;
+            this.minRating = minRating;
+            this.maxRating = maxRating;
         }
 
         public int MaxRating
         {
-            get { return _maxRating; }
+            get { return maxRating; }
         }
 
         public int MinRating
         {
-            get { return _minRating; }
+            get { return minRating; }
         }
     }
 }

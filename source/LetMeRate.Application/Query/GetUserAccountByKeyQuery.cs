@@ -6,9 +6,9 @@ using LetMeRate.Application.Security;
 
 namespace LetMeRate.Application.Query
 {
-    public class GetAccountQuery : WithAccountContext
+    public class GetUserAccountByKeyQuery : WithAccountContext
     {
-        public GetAccountQuery(AccountContext accountContext)
+        public GetUserAccountByKeyQuery(AccountContext accountContext)
             : base(accountContext)
         {
         }

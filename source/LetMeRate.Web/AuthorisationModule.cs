@@ -6,6 +6,7 @@ using System.Web;
 using LetMeRate.Application.Commands;
 using LetMeRate.Application.Security;
 using LetMeRate.Application.Services;
+using LetMeRate.Web.Helpers;
 using Nancy;
 
 namespace LetMeRate.Web
@@ -21,9 +22,11 @@ namespace LetMeRate.Web
             Post["/{Key}/Authorisation"] = x =>
             {
                 var command = new AuthorisationCredentialsCommand(new AccountContext(x.Key), IPAddress.Parse(Request.Form.IPAddress));
-                var authToken = authorisationService.CreateAuthorisationToken(command);
-
-                return Response.AsJson((string)authToken.TokenKey);
+                var authorisation = authorisationService.CreateAuthorisationToken(command);
+                return Response.AsJson(new
+                {
+                    authorisation.TokenKey
+                });
             };
         }
     }

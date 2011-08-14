@@ -5,8 +5,9 @@ namespace LetMeRate.Application.Services
 {
     public interface IAccountService
     {
-        dynamic CreateAccount(AddUserAccountCommand addUserAccountCommand);
-        dynamic GetUserAccountByKey(GetAccountQuery getAccountQuery);
+        dynamic CreateAccount(AddUserAccountCommand query);
+        dynamic GetUserAccountByKey(GetUserAccountByKeyQuery query);
         dynamic ValidateAccount(ValidateAccountCommand command);
+        dynamic GetUserAccount(GetUserAccountQuery query);
     }
 }

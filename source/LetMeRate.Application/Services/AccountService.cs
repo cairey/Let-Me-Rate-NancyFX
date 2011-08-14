@@ -8,22 +8,22 @@ namespace LetMeRate.Application.Services
 {
     public class AccountService : IAccountService
     {
-        private readonly IAccountKeyGenerator _accountKeyGenerator;
-        private readonly ISecurityDigest _securityDigest;
+        private readonly IAccountKeyGenerator accountKeyGenerator;
+        private readonly ISecurityDigest securityDigest;
 
         public AccountService(IAccountKeyGenerator accountKeyGenerator, ISecurityDigest securityDigest)
         {
-            _accountKeyGenerator = accountKeyGenerator;
-            _securityDigest = securityDigest;
+            this.accountKeyGenerator = accountKeyGenerator;
+            this.securityDigest = securityDigest;
         }
 
-        public dynamic CreateAccount(AddUserAccountCommand addUserAccountCommand)
+        public dynamic CreateAccount(AddUserAccountCommand command)
         {
-            var accountKey = _accountKeyGenerator.CreateKey();
-            var passwordSalt = _securityDigest.CreateSalt();
-            var encPassword = _securityDigest.EncryptPhase(addUserAccountCommand.Password, passwordSalt);
-            var email = addUserAccountCommand.Email;
-            var rateOutOf = addUserAccountCommand.RateOutOf;
+            var accountKey = accountKeyGenerator.CreateKey();
+            var passwordSalt = securityDigest.CreateSalt();
+            var encPassword = securityDigest.EncryptPhase(command.Password, passwordSalt);
+            var email = command.Email;
+            var rateOutOf = command.RateOutOf;
 
             var db = Database.Open();
             db.UserAccounts.Insert(Id : Guid.NewGuid(),
@@ -33,14 +33,24 @@ namespace LetMeRate.Application.Services
                                                     Key: accountKey,
                                                     RateOutOf: (int)rateOutOf);
 
-            return GetUserAccountByKey(new GetAccountQuery(new AccountContext(accountKey)));
+            return GetUserAccountByKey(new GetUserAccountByKeyQuery(new AccountContext(accountKey)));
         }
 
 
-        public dynamic GetUserAccountByKey(GetAccountQuery getAccountQuery)
+        public dynamic GetUserAccountByKey(GetUserAccountByKeyQuery query)
         {
             var db = Database.Open();
-            var userAccount = db.UserAccounts.FindAllByKey(getAccountQuery.AccountContext.AccountKey).FirstOrDefault();
+            var userAccount = db.UserAccounts.FindAllByKey(query.AccountContext.AccountKey).SingleOrDefault();
+
+            if (userAccount == null) throw new Exception("The user account cannot be found with that key.");
+            return userAccount;
+        }
+
+
+        public dynamic GetUserAccount(GetUserAccountQuery query)
+        {
+            var db = Database.Open();
+            var userAccount = db.UserAccounts.FindAllById(query.UserAccountId).SingleOrDefault();
 
             if (userAccount == null) throw new Exception("The user account cannot be found with that key.");
             return userAccount;
@@ -49,7 +59,7 @@ namespace LetMeRate.Application.Services
         public dynamic ValidateAccount(ValidateAccountCommand command)
         {
             var db = Database.Open();
-            var userAccount = db.UserAccounts.FindAllByKey(command.ValidationKey).FirstOrDefault();
+            var userAccount = db.UserAccounts.FindAllByKey(command.ValidationKey).SingleOrDefault();
             if (userAccount == null) return 0;
             userAccount.Enabled = true;
             return db.UserAccounts.Update(userAccount); ;

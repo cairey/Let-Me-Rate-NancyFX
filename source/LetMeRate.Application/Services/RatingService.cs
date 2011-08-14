@@ -13,31 +13,33 @@ namespace LetMeRate.Application.Services
     public class RatingService : IRatingService
     {
         private readonly IAccountService accountService;
+        private readonly IAuthorisationService authorisationService;
 
-        public RatingService(IAccountService accountService)
+        public RatingService(IAccountService accountService, IAuthorisationService authorisationService)
         {
             this.accountService = accountService;
+            this.authorisationService = authorisationService;
         }
 
-        public dynamic AddRating(AddRatingCommand addRatingCommand)
+        public dynamic AddRating(AddRatingCommand command)
         {
-            var userAccount = GetUserAccount(addRatingCommand.AccountContext.AccountKey);
+            var userAccount = GetUserAccount(command.AuthorisationContext);
 
-            if (addRatingCommand.Rating > userAccount.RateOutOf)
+            if (command.Rating > userAccount.RateOutOf)
                 throw new Exception("You cannot rate higher than the setting set by your account.");
 
             var db = Database.Open();
             return db.Ratings.Insert(Id: Guid.NewGuid(),
                                             UserAccountId: userAccount.Id,
-                                            UniqueKey: addRatingCommand.UniqueKey,
-                                            CustomParams: addRatingCommand.CustomParams,
-                                            Rating: (int)addRatingCommand.Rating);
+                                            UniqueKey: command.UniqueKey,
+                                            CustomParams: command.CustomParams,
+                                            Rating: (int)command.Rating);
         }
 
-        public dynamic GetAllRatings(GetAllRatingsQuery getAllRatingsQuery)
+        public dynamic GetAllRatings(GetAllRatingsQuery query)
         {
             var db = Database.Open();
-            var userAccount = GetUserAccount(getAllRatingsQuery.AccountContext.AccountKey);
+            var userAccount = GetUserAccount(query.AuthorisationContext);
             return db.Ratings.FindAllByUserAccountId(userAccount.Id);
         }
 
@@ -57,39 +59,39 @@ namespace LetMeRate.Application.Services
             return distinctAverageRatings;
         }
 
-        public dynamic GetRatingsBetweenRating(GetRatingsBetweenRatingQuery getRatingsBetweenRatingQuery)
+        public dynamic GetRatingsBetweenRating(GetRatingsBetweenRatingQuery query)
         {
             var db = Database.Open();
-            var userAccount = GetUserAccount(getRatingsBetweenRatingQuery.AccountContext.AccountKey);
-            return db.Ratings.FindAll(db.Ratings.Rating >= getRatingsBetweenRatingQuery.MinRating
-                && db.Ratings.Rating <= getRatingsBetweenRatingQuery.MaxRating
+            var userAccount = GetUserAccount(query.AuthorisationContext);
+            return db.Ratings.FindAll(db.Ratings.Rating >= query.MinRating
+                && db.Ratings.Rating <= query.MaxRating
                 && db.Ratings.UserAccountId == userAccount.Id);
         }
 
         
-        public dynamic GetRatingsByCustomParam(GetRatingsCustomParamQuery getRatingsCustomParamQuery)
+        public dynamic GetRatingsByCustomParam(GetRatingsCustomParamQuery query)
         {
             // open to sql injection
             var db = Database.Open();
-            var userAccount = GetUserAccount(getRatingsCustomParamQuery.AccountContext.AccountKey);
-            var like = "%" + getRatingsCustomParamQuery.CustomParam + "[\"''][:][ ][\"'']" + getRatingsCustomParamQuery.CustomQuery + "%";
+            var userAccount = GetUserAccount(query.AuthorisationContext);
+            var like = "%" + query.CustomParam + "[\"''][:][ ][\"'']" + query.CustomQuery + "%";
 
             return db.Ratings.FindAll(db.Ratings.CustomParams.Like(like) && db.Ratings.UserAccountId == userAccount.Id);
         }
 
-        public dynamic GetRatingsByUniqueKey(GetRatingUniqueKeyQuery getRatingUniqueKeyQuery)
+        public dynamic GetRatingsByUniqueKey(GetRatingUniqueKeyQuery query)
         {
             var db = Database.Open();
-            var userAccount = GetUserAccount(getRatingUniqueKeyQuery.AccountContext.AccountKey);
+            var userAccount = GetUserAccount(query.AuthorisationContext);
 
-            return db.ratings.FindAll(db.Ratings.UniqueKey == getRatingUniqueKeyQuery.UniqueKey
+            return db.ratings.FindAll(db.Ratings.UniqueKey == query.UniqueKey
                                                 && db.Ratings.UserAccountId == userAccount.Id);
         }
 
         public dynamic DeleteRating(DeleteRatingCommand command)
         {
             var db = Database.Open();
-            var userAccount = GetUserAccount(command.AccountContext.AccountKey);
+            var userAccount = GetUserAccount(command.AuthorisationContext);
             var ratings = db.ratings.FindAll(db.Ratings.UniqueKey == command.UniqueKey
                                     && db.Ratings.UserAccountId == userAccount.Id);
 
@@ -122,9 +124,15 @@ namespace LetMeRate.Application.Services
             return db.ratings.Update(rating);
         }
 
+        private dynamic GetUserAccount(AuthorisationContext authorisationContext)
+        {
+            var authorisation = authorisationService.GetAuthorsation(new GetAuthorisationQuery(authorisationContext));
+            return accountService.GetUserAccount(new GetUserAccountQuery(authorisation.UserAccountId));
+        }
+
         private dynamic GetUserAccount(string accountKey)
         {
-            return accountService.GetUserAccountByKey(new GetAccountQuery(new AccountContext(accountKey)));
+            return accountService.GetUserAccountByKey(new GetUserAccountByKeyQuery(new AccountContext(accountKey)));
         }
     }
 }

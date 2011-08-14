@@ -21,8 +21,18 @@ namespace LetMeRate.Web.Acceptance.Specs.Steps
         public void WhenGettingRatingsForMyAccountAndBetween7And10()
         {
             var accountKey = FeatureContext.Current["AccountKey2"];
+            var response = Browser.Post(string.Format("/{0}/Authorisation", accountKey), with =>
+            {
+                with.HttpRequest();
+                with.FormValue("IPAddress", "192.168.129.189");
+            });
 
-            _response = Browser.Get(string.Format("/{0}/Ratings/Between/Rating", accountKey), with =>
+            var responseString = response.GetBodyAsString();
+            var jss = new JavaScriptSerializer();
+            var result = jss.Deserialize<Dictionary<string, object>>(responseString);
+            var tokenKey = result["TokenKey"];
+
+            _response = Browser.Get(string.Format("/{0}/Ratings/Between/Rating", tokenKey), with =>
             {
                 with.HttpRequest();
                 with.Query("minRating", "7");

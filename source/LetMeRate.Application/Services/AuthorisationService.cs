@@ -37,9 +37,28 @@ namespace LetMeRate.Application.Services
             return authorisation;
         }
 
+        public dynamic GetAuthorsation(GetAuthorisationQuery query)
+        {
+            var db = Database.Open();
+            var authorisation = db.Authorisations.FindAllByTokenKey(query.AuthorisationContext.TokenKey).FirstOrDefault();
+
+            if (authorisation == null)
+                throw new Exception("The authorisation token cannot be found with that token key.");
+
+            if (authorisation.IPAddress != query.AuthorisationContext.IpAddress.ToString())
+                throw new Exception("The IP Address is not authorised");
+
+            if (authorisation.TokenExpiry <= DateTime.Now)
+                throw new Exception("The authorisation token has expired.");
+
+            db.Authorisations.DeleteById(authorisation.Id);
+
+            return authorisation;
+        }
+
         private dynamic GetUserAccount(string accountKey)
         {
-            return accountService.GetUserAccountByKey(new GetAccountQuery(new AccountContext(accountKey)));
+            return accountService.GetUserAccountByKey(new GetUserAccountByKeyQuery(new AccountContext(accountKey)));
         }
     }
 }

@@ -5,6 +5,7 @@ I want to be able to see ratings
 
 
 @CreateUserAccounts
+@CreateTempAuthorisation
 @ClearDatabase
 Scenario: adding a rating
 Given I am making web request

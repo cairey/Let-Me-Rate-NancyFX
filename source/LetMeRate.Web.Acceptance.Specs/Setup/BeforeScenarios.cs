@@ -21,6 +21,8 @@ namespace LetMeRate.Web.Acceptance.Specs.Setup
 
             var baseUrl = new Uri("http://baseurl/fearfactory");
             httpRequestWrapper.Url.Returns(baseUrl);
+            httpRequestWrapper.UserHostAddress.Returns("192.168.129.189");
+
             httpContextWrapper.Request.Returns(httpRequestWrapper);
             httpContextWrapper.Request.Returns(httpRequestWrapper);
 
@@ -76,6 +78,91 @@ namespace LetMeRate.Web.Acceptance.Specs.Setup
             FeatureContext.Current["AccountKey3"] = result["AccountKey"];
         }
 
+        [BeforeScenario]
+        public void CreateTempAuthorisation()
+        {
+            var browser = new Browser(new TestWebBootstrapper());
+
+            // 1
+            var accountKey = FeatureContext.Current["AccountKey"];
+            var response = browser.Post(string.Format("/{0}/Authorisation", accountKey), with =>
+            {
+                with.HttpRequest();
+                with.FormValue("IPAddress", "192.168.129.189");
+            });
+
+            var responseString = response.GetBodyAsString();
+            var jss = new JavaScriptSerializer();
+            var result = jss.Deserialize<Dictionary<string, object>>(responseString);
+            FeatureContext.Current["TokenKey"] = result["TokenKey"];
+
+            // 2
+            accountKey = FeatureContext.Current["AccountKey2"];
+            response = browser.Post(string.Format("/{0}/Authorisation", accountKey), with =>
+            {
+                with.HttpRequest();
+                with.FormValue("IPAddress", "192.168.129.189");
+            });
+
+            responseString = response.GetBodyAsString();
+            jss = new JavaScriptSerializer();
+            result = jss.Deserialize<Dictionary<string, object>>(responseString);
+            FeatureContext.Current["TokenKey2"] = result["TokenKey"];
+
+
+            // 3
+            accountKey = FeatureContext.Current["AccountKey2"];
+            response = browser.Post(string.Format("/{0}/Authorisation", accountKey), with =>
+            {
+                with.HttpRequest();
+                with.FormValue("IPAddress", "192.168.129.189");
+            });
+
+            responseString = response.GetBodyAsString();
+            jss = new JavaScriptSerializer();
+            result = jss.Deserialize<Dictionary<string, object>>(responseString);
+            FeatureContext.Current["TokenKey3"] = result["TokenKey"];
+
+            // 4
+            accountKey = FeatureContext.Current["AccountKey2"];
+            response = browser.Post(string.Format("/{0}/Authorisation", accountKey), with =>
+            {
+                with.HttpRequest();
+                with.FormValue("IPAddress", "192.168.129.189");
+            });
+
+            responseString = response.GetBodyAsString();
+            jss = new JavaScriptSerializer();
+            result = jss.Deserialize<Dictionary<string, object>>(responseString);
+            FeatureContext.Current["TokenKey4"] = result["TokenKey"];
+
+            // 5
+            accountKey = FeatureContext.Current["AccountKey2"];
+            response = browser.Post(string.Format("/{0}/Authorisation", accountKey), with =>
+            {
+                with.HttpRequest();
+                with.FormValue("IPAddress", "192.168.129.189");
+            });
+
+            responseString = response.GetBodyAsString();
+            jss = new JavaScriptSerializer();
+            result = jss.Deserialize<Dictionary<string, object>>(responseString);
+            FeatureContext.Current["TokenKey5"] = result["TokenKey"];
+
+            // 6
+            accountKey = FeatureContext.Current["AccountKey3"];
+            response = browser.Post(string.Format("/{0}/Authorisation", accountKey), with =>
+            {
+                with.HttpRequest();
+                with.FormValue("IPAddress", "192.168.129.189");
+            });
+
+            responseString = response.GetBodyAsString();
+            jss = new JavaScriptSerializer();
+            result = jss.Deserialize<Dictionary<string, object>>(responseString);
+            FeatureContext.Current["TokenKey6"] = result["TokenKey"];
+        }
+
 
         [BeforeScenario]
         public void AddRatings()
@@ -83,7 +170,7 @@ namespace LetMeRate.Web.Acceptance.Specs.Setup
             var browser = new Browser(new TestWebBootstrapper());
 
             // 1
-            browser.Post(string.Format("/{0}/Ratings", FeatureContext.Current["AccountKey"]), with =>
+            browser.Post(string.Format("/{0}/Ratings", FeatureContext.Current["TokenKey"]), with =>
             {
                 with.HttpRequest();
                 with.FormValue("Rating", "50");
@@ -93,7 +180,7 @@ namespace LetMeRate.Web.Acceptance.Specs.Setup
 
 
             // 2
-            browser.Post(string.Format("/{0}/Ratings", FeatureContext.Current["AccountKey2"]), with =>
+            browser.Post(string.Format("/{0}/Ratings", FeatureContext.Current["TokenKey2"]), with =>
             {
                 with.HttpRequest();
                 with.FormValue("Rating", "6");
@@ -103,7 +190,7 @@ namespace LetMeRate.Web.Acceptance.Specs.Setup
 
 
             // 3
-            browser.Post(string.Format("/{0}/Ratings", FeatureContext.Current["AccountKey2"]), with =>
+            browser.Post(string.Format("/{0}/Ratings", FeatureContext.Current["TokenKey3"]), with =>
             {
                 with.HttpRequest();
                 with.FormValue("Rating", "7");
@@ -112,7 +199,7 @@ namespace LetMeRate.Web.Acceptance.Specs.Setup
             });
 
 
-            browser.Post(string.Format("/{0}/Ratings", FeatureContext.Current["AccountKey2"]), with =>
+            browser.Post(string.Format("/{0}/Ratings", FeatureContext.Current["TokenKey4"]), with =>
             {
                 with.HttpRequest();
                 with.FormValue("Rating", "2");
@@ -121,7 +208,7 @@ namespace LetMeRate.Web.Acceptance.Specs.Setup
             });
 
 
-            browser.Post(string.Format("/{0}/Ratings", FeatureContext.Current["AccountKey2"]), with =>
+            browser.Post(string.Format("/{0}/Ratings", FeatureContext.Current["TokenKey5"]), with =>
             {
                 with.HttpRequest();
                 with.FormValue("Rating", "10");
@@ -131,7 +218,7 @@ namespace LetMeRate.Web.Acceptance.Specs.Setup
 
 
             // 4
-            browser.Post(string.Format("/{0}/Ratings", FeatureContext.Current["AccountKey3"]), with =>
+            browser.Post(string.Format("/{0}/Ratings", FeatureContext.Current["TokenKey6"]), with =>
             {
                 with.HttpRequest();
                 with.FormValue("Rating", "44");
