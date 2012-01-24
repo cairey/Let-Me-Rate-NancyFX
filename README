@@ -4,6 +4,28 @@ See the tests for how to use https://github.com/cairey/Let-Me-Rate/tree/master/s
 
 An example:
 
+Step 1 - Create an account to get an Account Key
+
+_response = Browser.Post("/Account/Create", with =>
+            {
+                with.HttpRequest();
+                with.FormValue("EmailAddress", "example@example.com");
+                with.FormValue("Password", "Pa55word");
+                with.FormValue("RateOutOf", "100");
+            });
+
+Step 2 - Validate the Account Key
+
+_response = Browser.Post(string.Format("/Account/Validate"), with =>
+                                                                             {
+                                                                                 with.HttpRequest();
+                                                                                 with.FormValue("ValidationKey", (string)validationKey);
+                                                                             });
+
+Step 3 - Anything now requires a token key to make requests. Below gets a temp token (token last once per request)
+Step 4 - We can start adding ratings!
+
+
         [When(@"adding a rating for my account")]
         public void WhenAddingARatingForMyAccount()
         {
