@@ -1,0 +1,31 @@
+A restful API for a rating servic built on top of Nancy. How many times have you recreated ratings for an applicaion?
+
+See the tsts for how to use https://github.com/cairey/Let-Me-Rate/tree/master/source/LetMeRate.Web.Acceptance.Specs/Steps
+
+An example:
+
+        [When(@"adding a rating for my account")]
+        public void WhenAddingARatingForMyAccount()
+        {
+            var accountKey = FeatureContext.Current["AccountKey"];
+            var response = Browser.Post(string.Format("/{0}/Authorisation", accountKey), with =>
+            {
+                with.HttpRequest();
+                with.FormValue("IPAddress", "192.168.129.189");
+            });
+
+            var responseString = response.GetBodyAsString();
+            var jss = new JavaScriptSerializer();
+            var result = jss.Deserialize<Dictionary<string, object>>(responseString);
+            var tokenKey = result["TokenKey"];
+
+            uniqueKey = 1;
+
+            _response = Browser.Post(string.Format("/{0}/Ratings", tokenKey), with =>
+            {
+                with.HttpRequest();
+                with.FormValue("Rating", "10");
+                with.FormValue("UniqueKey", uniqueKey.ToString());
+                with.FormValue("CustomParams", "{ \"RelatedContent\": \"1234\" }");
+            }); 
+        }
