@@ -1,4 +1,4 @@
-A restful API for a rating service built on top of Nancy. How many times have you recreated ratings for an applicaion?
+A restful API for a rating service built on top of Nancy and Simple.Data. How many times have you recreated ratings for an applicaion?
 Every response is JSON format.
 
 See the tests for how to use https://github.com/cairey/Let-Me-Rate/tree/master/source/LetMeRate.Web.Acceptance.Specs/Steps
