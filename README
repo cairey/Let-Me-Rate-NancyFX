@@ -1,4 +1,4 @@
-A restful API for a rating servic built on top of Nancy. How many times have you recreated ratings for an applicaion?
+A restful API for a rating service built on top of Nancy. How many times have you recreated ratings for an applicaion?
 
 See the tsts for how to use https://github.com/cairey/Let-Me-Rate/tree/master/source/LetMeRate.Web.Acceptance.Specs/Steps
 
